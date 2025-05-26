@@ -17,6 +17,7 @@ export const NotFound = () => {
         tal voltar para a página inicial?
       </p>
       <Button
+        variant="primary"
         onClick={() => navigate("/")}
         value="Voltar para o início"
       />

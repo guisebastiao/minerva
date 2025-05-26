@@ -1,12 +1,12 @@
 .button {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   color: var(--text-background);
   background: var(--primary-background);
   transition: all 200ms ease-in-out;
   border-radius: 6px;
-  padding: 0 20px;
-  height: 40px;
+  padding: 5px 20px;
+  min-height: 40px;
 }
 
 .button:hover {
@@ -16,4 +16,19 @@
 .button:disabled {
   background: var(--card-foreground);
   cursor: not-allowed;
+}
+
+.secondary {
+  border: 1px solid var(--border-background);
+  background: var(--card-foreground);
+}
+
+.secondary:hover {
+  background: var(--card-hover);
+}
+
+.destrutive {
+  color: var(--error-background);
+  border: 1px solid var(--error-background);
+  background: var(--error-background-opacity);
 }
