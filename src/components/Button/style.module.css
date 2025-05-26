@@ -1,0 +1,19 @@
+.button {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-background);
+  background: var(--primary-background);
+  transition: all 200ms ease-in-out;
+  border-radius: 6px;
+  padding: 0 20px;
+  height: 40px;
+}
+
+.button:hover {
+  background: var(--primary-hover);
+}
+
+.button:disabled {
+  background: var(--card-foreground);
+  cursor: not-allowed;
+}
