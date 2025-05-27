@@ -1,11 +1,22 @@
-import { Bolt, Globe, Home, SquareLibrary, SquarePlus } from "lucide-react";
+import {
+  AlignRight,
+  Bolt,
+  Globe,
+  Home,
+  SquareLibrary,
+  SquarePlus,
+  X,
+} from "lucide-react";
 import styles from "@/components/Header/style.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContextAuth } from "@/context/AuthContext";
 import { Button } from "../Button";
+import { useState } from "react";
 import clsx from "clsx";
 
 export const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const navigate = useNavigate();
   const { isAuthenticated } = useContextAuth();
 
@@ -20,7 +31,7 @@ export const Header = () => {
         <span className={styles.logoName}>Minerva</span>
       </div>
       {isAuthenticated ? (
-        <nav>
+        <nav className={clsx(styles.nav, isOpen && styles.isOpen)}>
           <ul className={styles.navegation}>
             <li>
               <NavLink
@@ -84,6 +95,16 @@ export const Header = () => {
           onClick={() => navigate("/login")}
         />
       )}
+      <button
+        className={styles.btnToggleMenu}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? (
+          <X className={styles.toggleIcon} />
+        ) : (
+          <AlignRight className={styles.toggleIcon} />
+        )}
+      </button>
     </header>
   );
 };

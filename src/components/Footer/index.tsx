@@ -6,7 +6,6 @@ export const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.boxPrimary}>
         <h4 className={styles.name}>Minerva</h4>
-        <p className={styles.location}>Tubarão - Santa Cararina</p>
         <div className={styles.sociasMedias}>
           <Instagram className={styles.iconLink} />
           <Facebook className={styles.iconLink} />
