@@ -36,6 +36,7 @@ export const Header = () => {
             <li>
               <NavLink
                 to="/"
+                onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
                   isActive ? clsx(styles.linkActive, styles.link) : styles.link
                 }
@@ -47,6 +48,7 @@ export const Header = () => {
             <li>
               <NavLink
                 to="/community"
+                onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
                   isActive ? clsx(styles.linkActive, styles.link) : styles.link
                 }
@@ -58,6 +60,7 @@ export const Header = () => {
             <li>
               <NavLink
                 to="/collections"
+                onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
                   isActive ? clsx(styles.linkActive, styles.link) : styles.link
                 }
@@ -69,6 +72,7 @@ export const Header = () => {
             <li>
               <NavLink
                 to="/settings"
+                onClick={() => setIsOpen(false)}
                 className={({ isActive }) =>
                   isActive ? clsx(styles.linkActive, styles.link) : styles.link
                 }
@@ -80,6 +84,7 @@ export const Header = () => {
             <li>
               <NavLink
                 to="/create-collection"
+                onClick={() => setIsOpen(false)}
                 className={styles.createCollection}
               >
                 <SquarePlus className={styles.icon} />

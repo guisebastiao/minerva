@@ -13,7 +13,7 @@ export const Community = () => {
   } = findAllPublicCollections();
 
   const endScrollRef = useRef<HTMLDivElement>(null);
-  const observer = useRef<IntersectionObserver>(null);
+  const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     observer.current = new IntersectionObserver((entries) => {
