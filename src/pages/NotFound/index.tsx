@@ -11,6 +11,7 @@ export const NotFound = () => {
       <img
         src="/not-found.png"
         alt="not-found-img"
+        className={styles.img}
       />
       <p className={styles.paragraph}>
         Desculpe, não conseguimos encontrar o que você estava procurando. Que

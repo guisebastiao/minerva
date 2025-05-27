@@ -1,12 +1,9 @@
-import { useContextAuth } from "@/context/AuthContext";
+import styles from "@/pages/Community/style.module.css";
 
 export const Community = () => {
-  const { logout } = useContextAuth();
-
   return (
-    <main>
-      <h1>Community</h1>
-      <button onClick={() => logout()}>LOGOUT</button>
+    <main className={styles.container}>
+      <h1>Descobrir</h1>
     </main>
   );
 };

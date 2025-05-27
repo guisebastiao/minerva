@@ -7,36 +7,57 @@ import { Login } from "@/pages/Login";
 import { Register } from "@/pages/Register";
 import { Home } from "@/pages/Home";
 import { Community } from "@/pages/Community";
+import { AppLayout } from "./AppLayout";
+import { Collection } from "@/pages/Collection";
+import { Setting } from "@/pages/Setting";
+import { CreateCollection } from "@/pages/CreateCollection";
 
 export const router = createBrowserRouter([
   {
-    element: <PublicRoutes />,
+    element: <AppLayout />,
     children: [
       {
-        path: "/login",
-        element: <Login />,
+        element: <PublicRoutes />,
+        children: [
+          {
+            path: "/login",
+            element: <Login />,
+          },
+          {
+            path: "/register",
+            element: <Register />,
+          },
+        ],
       },
       {
-        path: "/register",
-        element: <Register />,
+        element: <PrivateRoutes />,
+        children: [
+          {
+            path: "/community",
+            element: <Community />,
+          },
+          {
+            path: "/collections",
+            element: <Collection />,
+          },
+          {
+            path: "/settings",
+            element: <Setting />,
+          },
+          {
+            path: "/create-collection",
+            element: <CreateCollection />,
+          },
+        ],
       },
-    ],
-  },
-  {
-    element: <PrivateRoutes />,
-    children: [
       {
-        path: "/community",
-        element: <Community />,
+        path: "/",
+        element: <Home />,
       },
     ],
   },
   {
     path: "*",
     element: <NotFound />,
-  },
-  {
-    path: "/",
-    element: <Home />,
   },
 ]);

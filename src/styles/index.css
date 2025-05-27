@@ -29,6 +29,8 @@
   --button-background: #f4f4f5;
   --button-foreground: #27272a;
   --button-placeholder: #71717a;
+
+  --margin-header: 70px;
 }
 
 *,
