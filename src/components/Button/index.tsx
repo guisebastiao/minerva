@@ -6,6 +6,7 @@ import clsx from "clsx";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   value: string;
   isPending?: boolean;
+  className?: string;
   variant: "primary" | "secondary" | "destrutive";
 }
 
@@ -13,6 +14,7 @@ export const Button = ({
   value,
   variant,
   isPending = false,
+  className,
   ...rest
 }: ButtonProps) => {
   return (
@@ -21,7 +23,8 @@ export const Button = ({
         styles.button,
         variant === "secondary" && styles.secondary,
         variant === "destrutive" && styles.destrutive,
-        isPending && styles.loading
+        isPending && styles.loading,
+        className
       )}
       {...rest}
     >

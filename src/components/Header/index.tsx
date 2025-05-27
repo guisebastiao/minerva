@@ -98,6 +98,7 @@ export const Header = () => {
           value="Entrar"
           variant="primary"
           onClick={() => navigate("/login")}
+          className={styles.buttonLogin}
         />
       )}
       <button

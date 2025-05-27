@@ -163,4 +163,8 @@
   .isOpen {
     right: 0;
   }
+
+  .buttonLogin {
+    display: none;
+  }
 }

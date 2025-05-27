@@ -2,7 +2,7 @@ import axiosService, { type AxiosInstance } from "axios";
 import type { AuthDTO } from "@/services/types/AuthDTO";
 
 export const axios: AxiosInstance = axiosService.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "https://narrow-nonah-guisebastiao-2ae882b6.koyeb.app",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
