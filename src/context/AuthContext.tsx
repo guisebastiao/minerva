@@ -13,7 +13,7 @@ interface AuthProviderProps {
 }
 
 interface AuthContextType {
-  isAuthenticated: boolean;
+  isAuthenticated: boolean | null;
   user: UserDTO | null;
   login: (authData: AuthDTO) => void;
   logout: () => void;
@@ -22,7 +22,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [isAuthenticated, setAuthenticated] = useState(false);
+  const [isAuthenticated, setAuthenticated] = useState<boolean | null>(null);
 
   const [user, setUser] = useState<UserDTO | null>(null);
 
@@ -42,6 +42,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       setAuthenticated(true);
       setUser(parsedAuth.user);
+    } else {
+      setAuthenticated(false);
     }
   }, []);
 

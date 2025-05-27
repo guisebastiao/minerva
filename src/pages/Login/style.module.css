@@ -25,3 +25,15 @@
 .separator {
   padding: 5px 0;
 }
+
+.forgotPassword {
+  font-size: 15px;
+  color: var(--text-placeholder);
+  font-weight: 500;
+  text-decoration: underline;
+  transition: all 200ms ease-in-out;
+}
+
+.forgotPassword:hover {
+  color: var(--text-background);
+}
