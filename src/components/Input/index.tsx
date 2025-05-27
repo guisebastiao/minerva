@@ -1,15 +1,19 @@
 import { useState, type InputHTMLAttributes } from "react";
 import styles from "@/components/Input/style.module.css";
 import { Eye, EyeOff } from "lucide-react";
-import clsx from "clsx";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   isSecure?: boolean;
+  fieldError?: string;
 }
 
-export const Input = ({ label, isSecure = false, ...rest }: InputProps) => {
-  const [isFocused, setFocused] = useState(false);
+export const Input = ({
+  label,
+  isSecure = false,
+  fieldError,
+  ...rest
+}: InputProps) => {
   const [isVisible, setVisible] = useState(false);
 
   return (
@@ -18,15 +22,13 @@ export const Input = ({ label, isSecure = false, ...rest }: InputProps) => {
       htmlFor={label}
     >
       <span className={styles.label}>{label}</span>
-      <div className={clsx(styles.separator, isFocused && styles.focused)}>
+      <div className={styles.separator}>
         <input
           className={styles.input}
           type={isSecure ? (isVisible ? "text" : "password") : rest.type}
           id={label}
           name={label}
           autoComplete="off"
-          onFocus={() => setFocused(true)}
-          onBlur={() => setFocused(false)}
           {...rest}
         />
         {isSecure && (
@@ -43,6 +45,7 @@ export const Input = ({ label, isSecure = false, ...rest }: InputProps) => {
           </button>
         )}
       </div>
+      {fieldError && <span className={styles.errorMessage}>{fieldError}</span>}
     </label>
   );
 };

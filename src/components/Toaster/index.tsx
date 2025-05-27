@@ -6,7 +6,6 @@ export const Toaster = () => {
       visibleToasts={10}
       position="bottom-right"
       theme="dark"
-      closeButton={true}
     />
   );
 };

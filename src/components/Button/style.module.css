@@ -1,4 +1,8 @@
 .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   font-size: 15px;
   font-weight: 500;
   color: var(--text-background);
@@ -11,11 +15,6 @@
 
 .button:hover {
   background: var(--primary-hover);
-}
-
-.button:disabled {
-  background: var(--card-foreground);
-  cursor: not-allowed;
 }
 
 .secondary {
@@ -31,4 +30,19 @@
   color: var(--error-background);
   border: 1px solid var(--error-background);
   background: var(--error-background-opacity);
+}
+
+.loading {
+  background: var(--primary-active);
+  pointer-events: none;
+  cursor: default;
+}
+
+.button:disabled,
+.secondary:disabled,
+.destrutive:disabled {
+  background: var(--theme-background);
+  color: var(--card-hover);
+  border: 1px solid var(--card-hover);
+  cursor: not-allowed;
 }

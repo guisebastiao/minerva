@@ -6,7 +6,7 @@
 
 .separator {
   display: flex;
-  border: 1px solid var(--border-background);
+  border: 1px solid var(--text-placeholder);
   transition: all 200ms ease-in-out;
   border-radius: 6px;
 }
@@ -32,10 +32,6 @@
   text-transform: capitalize;
 }
 
-.focused {
-  border: 1px solid var(--text-background);
-}
-
 .icon {
   width: 20px;
   height: 20px;
@@ -44,4 +40,15 @@
 
 .button {
   padding: 0 8px;
+}
+
+.errorMessage {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-active);
+  border: 1px solid var(--error-background);
+  background: var(--error-background-opacity);
+  padding: 2px 4px;
+  border-radius: 4px;
 }

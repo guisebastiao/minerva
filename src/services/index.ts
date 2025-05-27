@@ -1,7 +1,7 @@
-import axios, { type AxiosInstance } from "axios";
+import axiosService, { type AxiosInstance } from "axios";
 import type { AuthDTO } from "@/services/types/AuthDTO";
 
-export const api: AxiosInstance = axios.create({
+export const axios: AxiosInstance = axiosService.create({
   baseURL: "http://localhost:8080",
   timeout: 10000,
   headers: {
@@ -9,7 +9,7 @@ export const api: AxiosInstance = axios.create({
   },
 });
 
-api.interceptors.request.use(
+axios.interceptors.request.use(
   (config) => {
     const authStorage = localStorage.getItem("auth");
     const auth = authStorage ? (JSON.parse(authStorage) as AuthDTO) : null;

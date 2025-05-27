@@ -4,6 +4,7 @@
 
   --primary-background: #6366f1;
   --primary-hover: #4f46e5;
+  --primary-active: #4338ca;
   --primary-foreground: #ffffff;
 
   --card-background: #f4f4f5;
@@ -27,6 +28,7 @@
 
   --button-background: #f4f4f5;
   --button-foreground: #27272a;
+  --button-placeholder: #71717a;
 }
 
 *,
