@@ -35,7 +35,7 @@ export const FindAllPublicCollections = async ({
         throw new Error("Algo deu errado, tente novamente mais tarde");
       }
 
-      const { message } = error.response?.data as DefaultDTO;
+      const { message } = error.response.data as DefaultDTO;
 
       throw new Error(message);
     }

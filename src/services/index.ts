@@ -2,7 +2,7 @@ import axiosService, { type AxiosInstance } from "axios";
 import type { AuthDTO } from "@/services/types/AuthDTO";
 
 export const axios: AxiosInstance = axiosService.create({
-  baseURL: "https://narrow-nonah-guisebastiao-2ae882b6.koyeb.app",
+  baseURL: "https://minerva-api-iny2.onrender.com",
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",

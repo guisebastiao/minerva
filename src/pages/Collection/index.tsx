@@ -76,6 +76,17 @@ export const Collection = () => {
       <section className={styles.collectionContent}>
         {isLoading ? (
           <Loading />
+        ) : response?.pages[0].data?.length! <= 0 ? (
+          <div className={styles.contentNotSearch}>
+            <p className={styles.notSearchText}>
+              Nenhuma coleção foi encontrada
+            </p>
+            <img
+              src="/not-search.png"
+              alt="not-search"
+              className={styles.notSearchImg}
+            />
+          </div>
         ) : (
           response?.pages.map((page) =>
             page.data?.map((collection) => (

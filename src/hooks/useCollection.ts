@@ -1,7 +1,9 @@
+import { AddFavorite, FindAllCollections } from "@/services/collectionService";
+import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import type { CollectionDTO } from "@/services/types/CollectionDTO";
-import { FindAllCollections } from "@/services/collectionService";
+import type { FavoriteSchema } from "@/schemas/FavoriteSchema";
 import type { DefaultDTO } from "@/services/types/DefaultDTO";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { queryClient } from "@/context/QueryContext";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -30,5 +32,18 @@ export const findAllCollections = () => {
     },
     queryKey: ["collections", search],
     initialPageParam: 0,
+  });
+};
+
+export const addFavorite = () => {
+  return useMutation({
+    mutationFn: (data: FavoriteSchema) => AddFavorite(data),
+    onError(error: Error) {
+      toast.error(error.message);
+    },
+    onSuccess(data) {
+      queryClient.invalidateQueries({ queryKey: ["collections"] });
+      toast.success(data.message);
+    },
   });
 };

@@ -30,7 +30,7 @@ export const CreateAssessment = ({
     setIsVisible(false);
   };
 
-  const handleAssessment = () => {
+  const handleCreateAssessment = () => {
     const data: AssessmentSchema = {
       deckId,
       assessmentValue: selected,
@@ -96,7 +96,7 @@ export const CreateAssessment = ({
         <Button
           value="Avaliar"
           variant="primary"
-          onClick={handleAssessment}
+          onClick={handleCreateAssessment}
           isPending={isPending}
         />
       </footer>
