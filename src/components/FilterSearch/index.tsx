@@ -1,11 +1,12 @@
 import styles from "@/components/FilterSearch/style.module.css";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { ListFilter } from "lucide-react";
+import { ListFilter, Check } from "lucide-react";
 import clsx from "clsx";
 
 export const FilterSearch = () => {
-  const [_, setSearch] = useSearchParams();
+  const [search, setSearch] = useSearchParams();
+  const order = search.get("order");
 
   const [isOpen, setIsOpen] = useState(false);
   const [alignRight, setAlignRight] = useState(false);
@@ -62,6 +63,8 @@ export const FilterSearch = () => {
     setSearch({ order });
   };
 
+  console.log(order);
+
   return (
     <div className={styles.filter}>
       <button
@@ -89,6 +92,7 @@ export const FilterSearch = () => {
             className={styles.dropdownButton}
             onClick={() => setOrder("")}
           >
+            {!order && <Check className={styles.icon} />}
             Padrão
           </button>
           <button
@@ -96,6 +100,7 @@ export const FilterSearch = () => {
             className={styles.dropdownButton}
             onClick={() => setOrder("date")}
           >
+            {order === "date" && <Check className={styles.icon} />}
             Criação
           </button>
           <button
@@ -103,6 +108,7 @@ export const FilterSearch = () => {
             className={styles.dropdownButton}
             onClick={() => setOrder("assessment")}
           >
+            {order === "assessment" && <Check className={styles.icon} />}
             Avaliação
           </button>
         </div>
