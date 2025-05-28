@@ -14,8 +14,11 @@
   --card-placeholder: #52525b;
 
   --success-background: #22c55e;
+  --success-background-opacity-20: #22c55e33;
   --error-background: #ef4444;
+  --error-background-opacity-30: #ef44444d;
   --error-background-opacity: #ef444466;
+  --error-background-opacity-20: #ef444433;
 
   --border-background: #3f3f46;
   --border-placeholder: #a1a1aa;

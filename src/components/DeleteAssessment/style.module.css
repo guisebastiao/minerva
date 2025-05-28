@@ -1,0 +1,85 @@
+.container {
+  position: fixed;
+  max-width: 500px;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  border: 1px solid var(--card-placeholder);
+  padding: 15px;
+  opacity: 0;
+  pointer-events: none;
+  background: var(--button-foreground);
+  transition: all 200ms ease;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 999999;
+  gap: 15px;
+}
+
+.visible {
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.visible::before {
+  position: fixed;
+  content: "";
+  width: 1000%;
+  height: 1000%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.header {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  color: var(--text-background);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.description {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-placeholder);
+}
+
+.close {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  padding: 2px;
+}
+
+.close svg {
+  width: 20px;
+  height: 20px;
+  color: var(--text-placeholder);
+  transition: 200ms;
+}
+
+.close:hover svg {
+  color: var(--text-background);
+}
+
+.footer {
+  display: flex;
+  gap: 8px;
+}
+
+@media only screen and (max-width: 500px) {
+  .container {
+    height: 100%;
+  }
+}

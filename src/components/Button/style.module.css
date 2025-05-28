@@ -29,13 +29,25 @@
 .destrutive {
   color: var(--error-background);
   border: 1px solid var(--error-background);
-  background: var(--error-background-opacity);
+  background: var(--error-background-opacity-20);
+}
+
+.destrutive:hover {
+  background: var(--error-background-opacity-30);
 }
 
 .loading {
   background: var(--primary-active);
   pointer-events: none;
   cursor: default;
+}
+
+.secondary.loading {
+  background: var(--button-foreground);
+}
+
+.destrutive.loading {
+  background: var(--error-background-opacity);
 }
 
 .button:disabled,

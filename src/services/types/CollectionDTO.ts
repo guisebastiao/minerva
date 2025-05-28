@@ -1,6 +1,6 @@
 import type { DeckDTO } from "./DeckDTO";
 
-export interface CollectionResponseDTO {
+export interface CollectionDTO {
   favorite: boolean;
   deck: DeckDTO;
 }

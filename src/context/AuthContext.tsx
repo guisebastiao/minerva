@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const [user, setUser] = useState<UserDTO | null>(null);
 
-  useEffect(() => {
+  const checkAuth = () => {
     const storedAuth = localStorage.getItem("auth");
 
     if (storedAuth) {
@@ -48,6 +48,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     } else {
       setAuthenticated(false);
     }
+  };
+
+  useEffect(() => {
+    checkAuth();
+    window.addEventListener("checkAuth", checkAuth);
+    return () => window.removeEventListener("checkAuth", checkAuth);
   }, []);
 
   const login = (authData: AuthDTO) => {

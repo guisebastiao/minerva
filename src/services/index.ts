@@ -14,6 +14,8 @@ axios.interceptors.request.use(
     const authStorage = localStorage.getItem("auth");
     const auth = authStorage ? (JSON.parse(authStorage) as AuthDTO) : null;
 
+    window.dispatchEvent(new Event("checkAuth"));
+
     if (auth?.token) {
       config.headers.Authorization = `Bearer ${auth.token}`;
     }
