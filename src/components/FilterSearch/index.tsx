@@ -56,14 +56,19 @@ export const FilterSearch = () => {
     setIsOpen(false);
 
     if (order === "") {
-      setSearch({});
+      setSearch((params) => {
+        params.delete("order");
+        return params;
+      });
+
       return;
     }
 
-    setSearch({ order });
+    setSearch((params) => {
+      params.set("order", order);
+      return params;
+    });
   };
-
-  console.log(order);
 
   return (
     <div className={styles.filter}>

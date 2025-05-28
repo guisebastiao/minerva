@@ -56,7 +56,12 @@ export const Community = () => {
             name="search"
             id="search"
             value={search.get("search") ?? ""}
-            onChange={(e) => setSearch({ search: e.target.value })}
+            onChange={(e) => {
+              setSearch((params) => {
+                params.set("search", e.target.value);
+                return params;
+              });
+            }}
           />
           {search.get("search") && (
             <button

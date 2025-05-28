@@ -36,8 +36,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const now = new Date(new Date().toISOString());
       const expires = new Date(parsedAuth.expires);
 
-      console.log(now < expires);
-
       if (now >= expires) {
         toast.info("Login expirado, faça seu login novamente");
         setAuthenticated(false);
