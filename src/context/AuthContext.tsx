@@ -7,6 +7,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { toast } from "sonner";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -36,8 +37,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const expires = new Date(parsedAuth.expires);
 
       if (now >= expires) {
+        toast.info("Login expirado, faça seu login novamente");
         setAuthenticated(false);
         localStorage.removeItem("auth");
+        logout();
       }
 
       setAuthenticated(true);

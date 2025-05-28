@@ -1,10 +1,15 @@
+import { CollectionCommunity } from "@/components/CollectionCommunity";
 import { findAllPublicCollections } from "@/hooks/useCommunity";
+import { FilterSearch } from "@/components/FilterSearch";
 import styles from "@/pages/Community/style.module.css";
+import { useSearchParams } from "react-router-dom";
 import { Loading } from "@/components/Loading";
 import { useEffect, useRef } from "react";
-import { CollectionCommunity } from "@/components/CollectionCommunity";
+import { Search, X } from "lucide-react";
 
 export const Community = () => {
+  const [search, setSearch] = useSearchParams();
+
   const {
     data: response,
     isLoading,
@@ -37,6 +42,34 @@ export const Community = () => {
 
   return (
     <main className={styles.container}>
+      <h1 className={styles.title}>Descobrir</h1>
+      <form className={styles.form}>
+        <label
+          className={styles.inputContent}
+          htmlFor="search"
+        >
+          <Search className={styles.icon} />
+          <input
+            className={styles.inputSearch}
+            placeholder="Pesquise por coleções da comunidade"
+            autoComplete="off"
+            name="search"
+            id="search"
+            value={search.get("search") ?? ""}
+            onChange={(e) => setSearch({ search: e.target.value })}
+          />
+          {search.get("search") && (
+            <button
+              type="button"
+              className={styles.resetSearch}
+              onClick={() => setSearch({})}
+            >
+              <X />
+            </button>
+          )}
+        </label>
+        <FilterSearch />
+      </form>
       <section className={styles.collectionContent}>
         {isLoading ? (
           <Loading />
