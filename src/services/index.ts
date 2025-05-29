@@ -3,7 +3,7 @@ import type { AuthDTO } from "@/services/types/AuthDTO";
 
 export const axios: AxiosInstance = axiosService.create({
   baseURL: "https://minerva-api-iny2.onrender.com",
-  timeout: 10000,
+  timeout: 60000,
   headers: {
     "Content-Type": "application/json",
   },

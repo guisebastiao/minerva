@@ -1,4 +1,5 @@
 import styles from "@/components/CollectionCommunity/style.module.css";
+import { addNewCollection } from "@/hooks/useCollection";
 import type { DeckDTO } from "@/services/types/DeckDTO";
 import { Album, Share2, Star } from "lucide-react";
 import { Button } from "@/components/Button";
@@ -12,6 +13,8 @@ interface CollectionCommunityProps {
 export const CollectionCommunity = ({
   collection,
 }: CollectionCommunityProps) => {
+  const { mutate, isPending } = addNewCollection();
+
   const roundedStars = Math.ceil(collection.assessment);
   const maxStars = 5;
 
@@ -24,7 +27,11 @@ export const CollectionCommunity = ({
     belongsToAuthUser: boolean,
     belongsToCollectionUser: boolean
   ): boolean => {
-    return belongsToAuthUser && belongsToCollectionUser;
+    return belongsToAuthUser || belongsToCollectionUser;
+  };
+
+  const addCollection = (deckId: string) => {
+    mutate({ deckId });
   };
 
   return (
@@ -73,6 +80,8 @@ export const CollectionCommunity = ({
           collection.belongsToAuthUser,
           collection.belongsToCollectionUser
         )}
+        onClick={() => addCollection(collection.id)}
+        isPending={isPending}
         variant="primary"
       />
     </div>

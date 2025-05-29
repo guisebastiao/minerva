@@ -1,4 +1,4 @@
-import { AddFavorite, FindAllCollections } from "@/services/collectionService";
+import type { AddNewCollectionSchema } from "@/schemas/AddNewCollectionSchema";
 import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import type { CollectionDTO } from "@/services/types/CollectionDTO";
 import type { FavoriteSchema } from "@/schemas/FavoriteSchema";
@@ -6,6 +6,26 @@ import type { DefaultDTO } from "@/services/types/DefaultDTO";
 import { queryClient } from "@/context/QueryContext";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
+import {
+  AddFavorite,
+  FindAllCollections,
+  AddNewCollection,
+  RemoveCollection,
+} from "@/services/collectionService";
+
+export const addNewCollection = () => {
+  return useMutation({
+    mutationFn: (data: AddNewCollectionSchema) => AddNewCollection(data),
+    onError(error: Error) {
+      toast.error(error.message);
+    },
+    onSuccess(data) {
+      queryClient.invalidateQueries({ queryKey: ["community"] });
+      queryClient.invalidateQueries({ queryKey: ["collections"] });
+      toast.success(data.message);
+    },
+  });
+};
 
 export const findAllCollections = () => {
   const [searchParams] = useSearchParams();
@@ -42,6 +62,20 @@ export const addFavorite = () => {
       toast.error(error.message);
     },
     onSuccess(data) {
+      queryClient.invalidateQueries({ queryKey: ["collections"] });
+      toast.success(data.message);
+    },
+  });
+};
+
+export const removeCollection = () => {
+  return useMutation({
+    mutationFn: (deckId: string) => RemoveCollection(deckId),
+    onError(error: Error) {
+      toast.error(error.message);
+    },
+    onSuccess(data) {
+      queryClient.invalidateQueries({ queryKey: ["community"] });
       queryClient.invalidateQueries({ queryKey: ["collections"] });
       toast.success(data.message);
     },

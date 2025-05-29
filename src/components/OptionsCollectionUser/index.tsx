@@ -1,4 +1,6 @@
 import styles from "@/components/OptionsCollectionUser/style.module.css";
+import { RemoveCollection } from "@/components/RemoveCollection";
+import { DeleteCollection } from "@/components/DeleteCollection";
 import type { DeckDTO } from "@/services/types/DeckDTO";
 import { useEffect, useRef, useState } from "react";
 import { EllipsisVertical } from "lucide-react";
@@ -11,6 +13,9 @@ interface OptionsCollectionUserProps {
 export const OptionsCollectionUser = ({
   collection,
 }: OptionsCollectionUserProps) => {
+  const [isVisibleRmCollection, setIsVisibleRmCollection] = useState(false);
+  const [isVisibleDeleteDeck, setIsVisibleDeleteDeck] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
   const [alignRight, setAlignRight] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -88,17 +93,31 @@ export const OptionsCollectionUser = ({
               <button
                 type="button"
                 className={styles.dropdownButton}
+                onClick={() => setIsVisibleDeleteDeck(!isVisibleDeleteDeck)}
               >
                 Excluir
               </button>
+              <DeleteCollection
+                isVisible={isVisibleDeleteDeck}
+                setIsVisible={setIsVisibleDeleteDeck}
+                deckId={collection.id}
+              />
             </>
           ) : (
-            <button
-              type="button"
-              className={styles.dropdownButton}
-            >
-              Remover das minhas coleções
-            </button>
+            <>
+              <button
+                type="button"
+                className={styles.dropdownButton}
+                onClick={() => setIsVisibleRmCollection(!isVisibleRmCollection)}
+              >
+                Remover
+              </button>
+              <RemoveCollection
+                deckId={collection.id}
+                setIsVisible={setIsVisibleRmCollection}
+                isVisible={isVisibleRmCollection}
+              />
+            </>
           )}
         </div>
       </div>
