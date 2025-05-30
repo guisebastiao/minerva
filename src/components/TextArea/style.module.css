@@ -1,0 +1,16 @@
+.textArea {
+  display: inline;
+  resize: none;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  text-align: justify;
+  border: none;
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--text-active);
+}
+
+.textArea::placeholder {
+  color: var(--text-placeholder);
+}

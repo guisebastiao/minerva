@@ -6,9 +6,13 @@
 
 .separator {
   display: flex;
-  border: 1px solid var(--text-placeholder);
+  border: 1px solid var(--border-background);
   transition: all 200ms ease-in-out;
   border-radius: 6px;
+}
+
+.focused {
+  border: 1px solid var(--text-placeholder);
 }
 
 .input {
