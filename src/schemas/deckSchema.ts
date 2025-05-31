@@ -1,4 +1,4 @@
-import z from "zod";
+import z, { string } from "zod";
 
 export const deckSchema = z.object({
   title: z
@@ -15,6 +15,7 @@ export const deckSchema = z.object({
   flashcards: z
     .array(
       z.object({
+        id: string().optional(),
         question: z
           .string()
           .min(1, "Informe a pergunta")
