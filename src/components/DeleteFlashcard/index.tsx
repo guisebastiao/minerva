@@ -1,4 +1,5 @@
 import styles from "@/components/RemoveCollection/style.module.css";
+import type { UseFieldArrayRemove } from "react-hook-form";
 import { deleteFlashcard } from "@/hooks/useFlashcard";
 import { useEffect, useRef } from "react";
 import { Button } from "../Button";
@@ -9,12 +10,16 @@ interface DeleteFlashcardProps {
   isVisible: boolean;
   setIsVisible: (value: boolean) => void;
   flashcardId: string;
+  remove: UseFieldArrayRemove;
+  index: number;
 }
 
 export const DeleteFlashcard = ({
   isVisible,
   setIsVisible,
   flashcardId,
+  remove,
+  index,
 }: DeleteFlashcardProps) => {
   const { mutate, isPending, isSuccess } = deleteFlashcard();
 
@@ -30,6 +35,7 @@ export const DeleteFlashcard = ({
 
   useEffect(() => {
     if (!isPending && isSuccess) {
+      remove(index);
       setIsVisible(false);
     }
   }, [isPending, isSuccess]);
@@ -53,12 +59,14 @@ export const DeleteFlashcard = ({
       </header>
       <footer className={styles.footer}>
         <Button
+          type="button"
           value="Cancelar"
           variant="secondary"
           disabled={isPending}
           onClick={handleCloseModal}
         />
         <Button
+          type="button"
           value="Excluir Flashcard"
           variant="destrutive"
           onClick={() => handleDeleteFlashcard(flashcardId)}

@@ -14,7 +14,6 @@ import { Trash, X } from "lucide-react";
 
 export const UpdateCollection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [selected, setSelected] = useState("");
 
   const { mutate, isPending, isSuccess } = updateDeck();
 
@@ -136,6 +135,8 @@ export const UpdateCollection = () => {
                     flashcardId={updateForm.watch(`flashcards.${index}.id`)!}
                     isVisible={isVisible}
                     setIsVisible={setIsVisible}
+                    remove={remove}
+                    index={index}
                   />
                 </>
               ) : (
