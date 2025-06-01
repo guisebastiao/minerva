@@ -27,12 +27,8 @@ export const Home = () => {
           </p>
         </div>
       </section>
-      <section className={styles.slogan}>
-        <img
-          src="/somos-o-que.png"
-          alt="somos-o-que-repetidamente"
-          className={styles.sloganImage}
-        />
+      <section className={styles.sloganContent}>
+        <h2 className={styles.slogon}>SOMOS O QUE REPETIDAMENTE FAZEMOS</h2>
       </section>
       <section className={styles.steps}>
         <div className={styles.step}>
