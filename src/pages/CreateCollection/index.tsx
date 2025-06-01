@@ -3,13 +3,17 @@ import styles from "@/pages/CreateCollection/style.module.css";
 import { useFieldArray, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TextArea } from "@/components/TextArea";
+import { useNavigate } from "react-router-dom";
 import { createDeck } from "@/hooks/useDeck";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { X } from "lucide-react";
+import { useEffect } from "react";
 
 export const CreateCollection = () => {
-  const { mutate, isPending } = createDeck();
+  const { mutate, isPending, isSuccess } = createDeck();
+
+  const navigate = useNavigate();
 
   const createForm = useForm<DeckSchemaType>({
     resolver: zodResolver(deckSchema),
@@ -29,6 +33,12 @@ export const CreateCollection = () => {
   const handleCreateCollection = () => {
     mutate(createForm.getValues());
   };
+
+  useEffect(() => {
+    if (!isPending && isSuccess) {
+      navigate("/collections");
+    }
+  }, [isSuccess, isPending]);
 
   return (
     <main className={styles.container}>

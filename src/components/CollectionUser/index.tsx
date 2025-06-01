@@ -59,9 +59,11 @@ export const CollectionUser = ({ collection }: CollectionUserProps) => {
               <Heart className={styles.iconOptions} />
             </button>
           )}
-          <button className={styles.buttonOptions}>
-            <Share2 className={styles.iconOptions} />
-          </button>
+          {collection.deck.isPublic && (
+            <button className={styles.buttonOptions}>
+              <Share2 className={styles.iconOptions} />
+            </button>
+          )}
           <OptionsCollectionUser collection={collection.deck} />
         </div>
       </div>
