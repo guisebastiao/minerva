@@ -74,6 +74,7 @@ export const Login = () => {
           type="button"
           className={styles.forgotPassword}
           disabled={isPending}
+          onClick={() => navigate("/forgot-password")}
         >
           Esqueci minha senha
         </button>

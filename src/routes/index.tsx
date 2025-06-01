@@ -4,6 +4,8 @@ import { PublicRoutes } from "@/routes/PublicRoutes";
 
 import { NotFound } from "@/pages/NotFound";
 import { Login } from "@/pages/Login";
+import { ForgotPassword } from "@/pages/ForgotPassword";
+import { ResetPassword } from "@/pages/ResetPassword";
 import { Register } from "@/pages/Register";
 import { Home } from "@/pages/Home";
 import { Community } from "@/pages/Community";
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
           {
             path: "/register",
             element: <Register />,
+          },
+          {
+            path: "/forgot-password",
+            element: <ForgotPassword />,
+          },
+          {
+            path: "/reset-password/:token",
+            element: <ResetPassword />,
           },
         ],
       },
