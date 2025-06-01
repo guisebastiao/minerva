@@ -78,6 +78,7 @@ export const Collection = () => {
           <Loading />
         ) : response?.pages[0].data?.length! <= 0 ? (
           <div className={styles.contentNotSearch}>
+            <h1 className={styles.title}>OPSS...</h1>
             <p className={styles.notSearchText}>
               Nenhuma coleção foi encontrada
             </p>
