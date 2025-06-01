@@ -125,11 +125,6 @@ button:disabled {
   pointer-events: none;
 }
 
-html,
-body {
-  overflow-x: hidden;
-}
-
 #root {
   min-height: 100vh;
   isolation: isolate;

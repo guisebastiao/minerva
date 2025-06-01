@@ -1,5 +1,6 @@
 import type { AuthDTO } from "@/services/types/AuthDTO";
 import type { UserDTO } from "@/services/types/UserDTO";
+import { toast } from "sonner";
 import {
   createContext,
   type ReactNode,
@@ -7,7 +8,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { toast } from "sonner";
 
 interface AuthProviderProps {
   children: ReactNode;
