@@ -106,8 +106,7 @@ export const Home = () => {
               ))}
             </div>
             <p className={styles.reviewText}>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam.
+              É uma ótima ferramenta para os meus estudos, que me ajuda a fixar conteúdos com os quais sempre tive dificuldade. Além de poder criar meus próprios flashcards, também posso consumir materiais de outros usuários, o que potencializa ainda mais meus estudos.
             </p>
             <div className={styles.userInfo}>
               <img
