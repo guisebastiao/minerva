@@ -12,6 +12,7 @@ import { Collection } from "@/pages/Collection";
 import { Setting } from "@/pages/Setting";
 import { CreateCollection } from "@/pages/CreateCollection";
 import { UpdateCollection } from "@/pages/UpdateCollection";
+import { Shared } from "@/pages/Shared";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
           {
             path: "/update-collection/:deckId",
             element: <UpdateCollection />,
+          },
+          {
+            path: "/shared/:deckId",
+            element: <Shared />,
           },
         ],
       },

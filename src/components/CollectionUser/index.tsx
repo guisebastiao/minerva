@@ -1,5 +1,5 @@
 import type { CollectionDTO } from "@/services/types/CollectionDTO";
-import { Album, GraduationCap, Heart, Share2 } from "lucide-react";
+import { Album, GraduationCap, Heart, Share2, Check } from "lucide-react";
 import styles from "@/components/CollectionUser/style.module.css";
 import { OptionsCollectionUser } from "../OptionsCollectionUser";
 import type { FavoriteSchema } from "@/schemas/FavoriteSchema";
@@ -9,7 +9,8 @@ import { addFavorite } from "@/hooks/useCollection";
 import { ptBR } from "date-fns/locale";
 import { Button } from "../Button";
 import { format } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import clsx from "clsx";
 
 interface CollectionUserProps {
@@ -17,6 +18,9 @@ interface CollectionUserProps {
 }
 
 export const CollectionUser = ({ collection }: CollectionUserProps) => {
+  const [isCopied, setIsCopied] = useState(false);
+  const TIME_CLICKED = 2000;
+
   const { mutate } = addFavorite();
 
   const [isCreateVisible, setIsCreateVisible] = useState(false);
@@ -30,6 +34,25 @@ export const CollectionUser = ({ collection }: CollectionUserProps) => {
   const handleFavorite = (data: FavoriteSchema) => {
     mutate(data);
   };
+
+  const share = (deckId: string) => {
+    const link = `${window.location.protocol}//${window.location.host}/shared/${deckId}`;
+
+    navigator.clipboard
+      .writeText(link)
+      .then(() => toast.success("Link da coleção copiado"))
+      .catch(() => toast.error("Erro ao copiar o link da coleção"));
+  };
+
+  useEffect(() => {
+    if (isCopied) {
+      const timer = setTimeout(() => {
+        setIsCopied(false);
+      }, TIME_CLICKED);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isCopied]);
 
   return (
     <div className={styles.content}>
@@ -60,8 +83,18 @@ export const CollectionUser = ({ collection }: CollectionUserProps) => {
             </button>
           )}
           {collection.deck.isPublic && (
-            <button className={styles.buttonOptions}>
-              <Share2 className={styles.iconOptions} />
+            <button
+              className={clsx(styles.buttonOptions, isCopied && styles.copied)}
+              onClick={() => {
+                setIsCopied(true);
+                share(collection.deck.id);
+              }}
+            >
+              {isCopied ? (
+                <Check className={styles.iconOptions} />
+              ) : (
+                <Share2 className={styles.iconOptions} />
+              )}
             </button>
           )}
           <OptionsCollectionUser collection={collection.deck} />
