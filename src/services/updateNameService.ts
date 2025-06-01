@@ -3,7 +3,9 @@ import type { DefaultDTO } from "./types/DefaultDTO";
 import { AxiosError } from "axios";
 import { axios } from "@/services";
 
-export const UpdateName = async (data: UpdateNameSchemaType): Promise<DefaultDTO> => {
+export const UpdateName = async (
+  data: UpdateNameSchemaType
+): Promise<DefaultDTO> => {
   try {
     const { data: response } = await axios.put<DefaultDTO>("/users", data);
     return response;

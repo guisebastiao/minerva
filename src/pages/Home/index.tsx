@@ -79,7 +79,10 @@ export const Home = () => {
               ))}
             </div>
             <p className={styles.reviewText}>
-              O Minerva é uma plataforma intuitiva e minimalista para estudos com flashcards. ótima para praticar a repetição espaçada com seus flashcards ou públicos. Uma ferramenta que se  destaca nos estudos online.
+              O Minerva é uma plataforma intuitiva e minimalista para estudos
+              com flashcards. ótima para praticar a repetição espaçada com seus
+              flashcards ou públicos. Uma ferramenta que se destaca nos estudos
+              online.
             </p>
             <div className={styles.userInfo}>
               <img
@@ -128,7 +131,10 @@ export const Home = () => {
               ))}
             </div>
             <p className={styles.reviewText}>
-              Depois que decidi estudar de forma mais produtiva, o Minerva se tornou meu maior aliado. Sua praticidade e algoritmo de revisão inteligente me ajuda a focar nos estudos e revisar os meus conhecimentos no tempo certo.
+              Depois que decidi estudar de forma mais produtiva, o Minerva se
+              tornou meu maior aliado. Sua praticidade e algoritmo de revisão
+              inteligente me ajuda a focar nos estudos e revisar os meus
+              conhecimentos no tempo certo.
             </p>
             <div className={styles.userInfo}>
               <img
@@ -152,7 +158,10 @@ export const Home = () => {
               ))}
             </div>
             <p className={styles.reviewText}>
-              O Minerva surpreende pela sua simplicidade e eficiência. É fácil de usar e realmente ajuda a fixar os conteúdos com mais facilidade. Recomendo pra quem quer estudar de forma mais inteligente.
+              O Minerva surpreende pela sua simplicidade e eficiência. É fácil
+              de usar e realmente ajuda a fixar os conteúdos com mais
+              facilidade. Recomendo pra quem quer estudar de forma mais
+              inteligente.
             </p>
             <div className={styles.userInfo}>
               <img
