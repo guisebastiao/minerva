@@ -1,5 +1,9 @@
 import styles from "@/pages/Home/style.module.css";
 import { Star } from "lucide-react";
+import gui_banner from "@/assets/gui.jpg";
+import karol_banner from "@/assets/karol.jpeg";
+import joao_banner from "@/assets/joao.jpg";
+import murilo_banner from "@/assets/murilo.jpg";
 
 export const Home = () => {
   return (
@@ -75,12 +79,11 @@ export const Home = () => {
               ))}
             </div>
             <p className={styles.reviewText}>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam.
+              O Minerva é uma plataforma intuitiva e minimalista para estudos com flashcards. ótima para praticar a repetição espaçada com seus flashcards ou públicos. Uma ferramenta que se  destaca nos estudos online.
             </p>
             <div className={styles.userInfo}>
               <img
-                src="/guilherme.png"
+                src={gui_banner}
                 alt="Guilherme"
                 className={styles.avatar}
               />
@@ -105,7 +108,7 @@ export const Home = () => {
             </p>
             <div className={styles.userInfo}>
               <img
-                src="/karoline.png"
+                src={karol_banner}
                 alt="Karoline"
                 className={styles.avatar}
               />
@@ -125,12 +128,11 @@ export const Home = () => {
               ))}
             </div>
             <p className={styles.reviewText}>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam.
+              Depois que decidi estudar de forma mais produtiva, o Minerva se tornou meu maior aliado. Sua praticidade e algoritmo de revisão inteligente me ajuda a focar nos estudos e revisar os meus conhecimentos no tempo certo.
             </p>
             <div className={styles.userInfo}>
               <img
-                src="/murilo.png"
+                src={murilo_banner}
                 alt="Murilo Américo"
                 className={styles.avatar}
               />
@@ -150,17 +152,16 @@ export const Home = () => {
               ))}
             </div>
             <p className={styles.reviewText}>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam.
+              O Minerva surpreende pela sua simplicidade e eficiência. É fácil de usar e realmente ajuda a fixar os conteúdos com mais facilidade. Recomendo pra quem quer estudar de forma mais inteligente.
             </p>
             <div className={styles.userInfo}>
               <img
-                src="/joao.png"
-                alt="João Manuel"
+                src={joao_banner}
+                alt="João Manoel"
                 className={styles.avatar}
               />
               <div>
-                <strong>JOÃO MANUEL</strong>
+                <strong>JOÃO MANOEL</strong>
                 <span>CEO</span>
               </div>
             </div>

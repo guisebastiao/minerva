@@ -18,6 +18,7 @@ interface AuthContextType {
   user: UserDTO | null;
   login: (authData: AuthDTO) => void;
   logout: () => void;
+  renameUser: (name: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -68,8 +69,17 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setAuthenticated(false);
   };
 
+  const renameUser = (name: string) => {
+    const storedAuth = localStorage.getItem("auth");
+    const storage: AuthDTO = JSON.parse(storedAuth!);
+    storage.user.name = name;
+    localStorage.setItem("auth", JSON.stringify(storage));
+    setUser(storage.user)
+  } 
+
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout, renameUser }}>
       {children}
     </AuthContext.Provider>
   );
@@ -84,3 +94,5 @@ export const useContextAuth = (): AuthContextType => {
 
   return context;
 };
+
+
