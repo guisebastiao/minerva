@@ -7,7 +7,6 @@ import { createDeck } from "@/hooks/useDeck";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { X } from "lucide-react";
-import { useEffect } from "react";
 
 export const CreateCollection = () => {
   const { mutate, isPending } = createDeck();
