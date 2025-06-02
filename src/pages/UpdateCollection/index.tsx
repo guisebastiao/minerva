@@ -1,63 +1,70 @@
 import { deckSchema, type DeckSchemaType } from "@/schemas/DeckSchema";
-import styles from "@/pages/CreateCollection/style.module.css";
+import styles from "@/pages/UpdateCollection/style.module.css";
+import { DeleteFlashcard } from "@/components/DeleteFlashcard";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useFieldArray, useForm } from "react-hook-form";
+import type { DeckDTO } from "@/services/types/DeckDTO";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TextArea } from "@/components/TextArea";
-import { useNavigate } from "react-router-dom";
-import { createDeck } from "@/hooks/useDeck";
+import { updateDeck } from "@/hooks/useDeck";
 import { Button } from "@/components/Button";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/Input";
-import { X } from "lucide-react";
+import { Trash, X } from "lucide-react";
 
-export const CreateCollection = () => {
-  const { mutate, isPending, isSuccess } = createDeck();
+export const UpdateCollection = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
+  const { mutate, isPending, isSuccess } = updateDeck();
+
+  const location = useLocation();
   const navigate = useNavigate();
+  const collection = location.state as DeckDTO;
 
-  const createForm = useForm<DeckSchemaType>({
+  const updateForm = useForm<DeckSchemaType>({
     resolver: zodResolver(deckSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      isPublic: false,
-      flashcards: [{ question: "", answer: "" }],
+      title: collection.title,
+      description: collection.description,
+      isPublic: collection.isPublic,
+      flashcards: collection.flashcards,
     },
   });
 
   const { fields, append, remove } = useFieldArray({
-    control: createForm.control,
+    control: updateForm.control,
     name: "flashcards",
   });
 
   const handleCreateCollection = () => {
-    mutate(createForm.getValues());
+    mutate(updateForm.getValues());
   };
 
   useEffect(() => {
-    if (!isPending && isSuccess) {
+    if (isSuccess) {
       navigate("/collections");
     }
-  }, [isSuccess, isPending]);
+  }, [isSuccess]);
 
   return (
     <main className={styles.container}>
       <h1 className={styles.title}>Criar Coleção</h1>
       <form
         className={styles.form}
-        onSubmit={createForm.handleSubmit(handleCreateCollection)}
+        onSubmit={updateForm.handleSubmit(handleCreateCollection)}
       >
         <section className={styles.inputs}>
           <Input
             label="Título"
             placeholder="Informe o nome da coleção"
-            fieldError={createForm.formState.errors.title?.message}
-            {...createForm.register("title")}
+            fieldError={updateForm.formState.errors.title?.message}
+            {...updateForm.register("title")}
           />
           <Input
             label="Descrição"
             placeholder="Informe a descrição da coleção"
-            fieldError={createForm.formState.errors.description?.message}
-            {...createForm.register("description")}
+            fieldError={updateForm.formState.errors.description?.message}
+            {...updateForm.register("description")}
           />
           <label
             htmlFor="isPublic"
@@ -69,7 +76,7 @@ export const CreateCollection = () => {
                 type="checkbox"
                 id="isPublic"
                 className={styles.checkbox}
-                {...createForm.register("isPublic")}
+                {...updateForm.register("isPublic")}
               />
               <p className={styles.text}>Essa coleção é publica?</p>
             </div>
@@ -87,12 +94,12 @@ export const CreateCollection = () => {
                 <TextArea
                   placeholder="Faça a pergunta para sua coleção"
                   maxLength={300}
-                  {...createForm.register(`flashcards.${index}.question`)}
+                  {...updateForm.register(`flashcards.${index}.question`)}
                 />
-                {createForm.formState.errors.flashcards?.[index]?.question && (
+                {updateForm.formState.errors.flashcards?.[index]?.question && (
                   <p className={styles.errorMessage}>
                     {
-                      createForm.formState.errors.flashcards[index]?.question
+                      updateForm.formState.errors.flashcards[index]?.question
                         ?.message
                     }
                   </p>
@@ -103,24 +110,43 @@ export const CreateCollection = () => {
                 <TextArea
                   placeholder="Faça a resposta da pergunta"
                   maxLength={300}
-                  {...createForm.register(`flashcards.${index}.answer`)}
+                  {...updateForm.register(`flashcards.${index}.answer`)}
                 />
-                {createForm.formState.errors.flashcards?.[index]?.question && (
+                {updateForm.formState.errors.flashcards?.[index]?.question && (
                   <p className={styles.errorMessage}>
                     {
-                      createForm.formState.errors.flashcards[index]?.question
+                      updateForm.formState.errors.flashcards[index]?.question
                         ?.message
                     }
                   </p>
                 )}
               </div>
-              {index !== 0 && (
+              {updateForm.watch(`flashcards.${index}.id`) ? (
+                <>
+                  <button
+                    type="button"
+                    className={styles.deleteFlashcard}
+                    onClick={() => setIsVisible(true)}
+                    disabled={isPending}
+                  >
+                    <Trash className={styles.deleteIcon} />
+                  </button>
+                  <DeleteFlashcard
+                    flashcardId={updateForm.watch(`flashcards.${index}.id`)!}
+                    isVisible={isVisible}
+                    setIsVisible={setIsVisible}
+                    remove={remove}
+                    index={index}
+                  />
+                </>
+              ) : (
                 <button
                   type="button"
                   className={styles.removeFlashcard}
                   onClick={() => remove(index)}
+                  disabled={isPending}
                 >
-                  <X />
+                  <X className={styles.removeIcon} />
                 </button>
               )}
             </aside>
@@ -136,7 +162,7 @@ export const CreateCollection = () => {
             onClick={() => append({ question: "", answer: "" })}
           />
           <Button
-            value="Criar Coleção"
+            value="Salvar"
             variant="primary"
             className={styles.button}
             isPending={isPending}

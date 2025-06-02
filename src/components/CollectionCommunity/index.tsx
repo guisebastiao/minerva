@@ -1,10 +1,13 @@
 import styles from "@/components/CollectionCommunity/style.module.css";
+import { Album, Check, Share2, Star } from "lucide-react";
 import { addNewCollection } from "@/hooks/useCollection";
 import type { DeckDTO } from "@/services/types/DeckDTO";
-import { Album, Share2, Star } from "lucide-react";
 import { Button } from "@/components/Button";
+import { useEffect, useState } from "react";
 import { ptBR } from "date-fns/locale";
 import { format } from "date-fns";
+import { toast } from "sonner";
+import clsx from "clsx";
 
 interface CollectionCommunityProps {
   collection: DeckDTO;
@@ -13,6 +16,9 @@ interface CollectionCommunityProps {
 export const CollectionCommunity = ({
   collection,
 }: CollectionCommunityProps) => {
+  const [isCopied, setIsCopied] = useState(false);
+  const TIME_CLICKED = 2000;
+
   const { mutate, isPending } = addNewCollection();
 
   const roundedStars = Math.ceil(collection.assessment);
@@ -34,6 +40,25 @@ export const CollectionCommunity = ({
     mutate({ deckId });
   };
 
+  const share = (deckId: string) => {
+    const link = `${window.location.protocol}//${window.location.host}/shared/${deckId}`;
+
+    navigator.clipboard
+      .writeText(link)
+      .then(() => toast.success("Link da coleção copiado"))
+      .catch(() => toast.error("Erro ao copiar o link da coleção"));
+  };
+
+  useEffect(() => {
+    if (isCopied) {
+      const timer = setTimeout(() => {
+        setIsCopied(false);
+      }, TIME_CLICKED);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isCopied]);
+
   return (
     <div className={styles.content}>
       <div className={styles.box}>
@@ -42,8 +67,18 @@ export const CollectionCommunity = ({
       </div>
       <div className={styles.box}>
         <h1 className={styles.title}>{collection.title}</h1>
-        <button className={styles.buttonShare}>
-          <Share2 className={styles.iconShate} />
+        <button
+          className={clsx(styles.buttonOptions, isCopied && styles.copied)}
+          onClick={() => {
+            setIsCopied(true);
+            share(collection.id);
+          }}
+        >
+          {isCopied ? (
+            <Check className={styles.iconShare} />
+          ) : (
+            <Share2 className={styles.iconShare} />
+          )}
         </button>
       </div>
       <div className={styles.box}>

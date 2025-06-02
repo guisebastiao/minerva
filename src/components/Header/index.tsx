@@ -1,3 +1,9 @@
+import styles from "@/components/Header/style.module.css";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useContextAuth } from "@/context/AuthContext";
+import { Button } from "../Button";
+import { useState } from "react";
+import clsx from "clsx";
 import {
   AlignRight,
   Bolt,
@@ -7,12 +13,6 @@ import {
   SquarePlus,
   X,
 } from "lucide-react";
-import styles from "@/components/Header/style.module.css";
-import { NavLink, useNavigate } from "react-router-dom";
-import { useContextAuth } from "@/context/AuthContext";
-import { Button } from "../Button";
-import { useState } from "react";
-import clsx from "clsx";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,9 +20,31 @@ export const Header = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useContextAuth();
 
+  const links = [
+    { to: "/", icon: <Home className={styles.icon} />, label: "Início" },
+    {
+      to: "/community",
+      icon: <Globe className={styles.icon} />,
+      label: "Descobrir",
+    },
+    {
+      to: "/collections",
+      icon: <SquareLibrary className={styles.icon} />,
+      label: "Minhas Coleções",
+    },
+    {
+      to: "/settings",
+      icon: <Bolt className={styles.icon} />,
+      label: "Configurações",
+    },
+  ];
+
   return (
     <header className={styles.header}>
-      <div className={styles.logoContent}>
+      <div
+        className={styles.logoContent}
+        onClick={() => navigate("/")}
+      >
         <img
           src="/icon.png"
           alt="minerva-icon"
@@ -30,80 +52,56 @@ export const Header = () => {
         />
         <span className={styles.logoName}>Minerva</span>
       </div>
-      {isAuthenticated ? (
-        <nav className={clsx(styles.nav, isOpen && styles.isOpen)}>
-          <ul className={styles.navegation}>
+      <nav className={clsx(styles.nav, isOpen && styles.isOpen)}>
+        <ul className={styles.navegation}>
+          {isAuthenticated ? (
+            <>
+              {links.map((link) => (
+                <li key={link.to}>
+                  <NavLink
+                    to={link.to}
+                    onClick={() => setIsOpen(false)}
+                    className={({ isActive }) =>
+                      isActive
+                        ? clsx(styles.linkActive, styles.link)
+                        : styles.link
+                    }
+                  >
+                    {link.icon}
+                    <span className={styles.name}>{link.label}</span>
+                  </NavLink>
+                </li>
+              ))}
+              <li>
+                <NavLink
+                  to="/create-collection"
+                  onClick={() => setIsOpen(false)}
+                  className={styles.createCollection}
+                >
+                  <SquarePlus className={styles.icon} />
+                  <span className={styles.name}>Criar Coleção</span>
+                </NavLink>
+              </li>
+            </>
+          ) : (
             <li>
-              <NavLink
-                to="/"
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  isActive ? clsx(styles.linkActive, styles.link) : styles.link
-                }
-              >
-                <Home className={styles.icon} />
-                <span className={styles.name}>Início</span>
-              </NavLink>
+              <h1 className={styles.title}>Entre com sua conta</h1>
+              <p className={styles.description}>
+                Entre no Minerva e aprenda de forma prática com flashcards
+              </p>
+              <Button
+                value="Entrar"
+                variant="primary"
+                onClick={() => navigate("/login")}
+                className={styles.buttonLogin}
+              />
             </li>
-            <li>
-              <NavLink
-                to="/community"
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  isActive ? clsx(styles.linkActive, styles.link) : styles.link
-                }
-              >
-                <Globe className={styles.icon} />
-                <span className={styles.name}>Descobrir</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/collections"
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  isActive ? clsx(styles.linkActive, styles.link) : styles.link
-                }
-              >
-                <SquareLibrary className={styles.icon} />
-                <span className={styles.name}>Minhas Coleções</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/settings"
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  isActive ? clsx(styles.linkActive, styles.link) : styles.link
-                }
-              >
-                <Bolt className={styles.icon} />
-                <span className={styles.name}>Configurações</span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/create-collection"
-                onClick={() => setIsOpen(false)}
-                className={styles.createCollection}
-              >
-                <SquarePlus className={styles.icon} />
-                <span className={styles.name}>Criar Coleção</span>
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-      ) : (
-        <Button
-          value="Entrar"
-          variant="primary"
-          onClick={() => navigate("/login")}
-          className={styles.buttonLogin}
-        />
-      )}
+          )}
+        </ul>
+      </nav>
       <button
         className={styles.btnToggleMenu}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => setIsOpen((prev) => !prev)}
       >
         {isOpen ? (
           <X className={styles.toggleIcon} />

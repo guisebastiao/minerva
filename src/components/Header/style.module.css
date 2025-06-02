@@ -16,6 +16,7 @@
 .logoContent {
   display: flex;
   align-items: center;
+  cursor: pointer;
   gap: 10px;
 }
 
@@ -91,6 +92,11 @@
   display: none;
 }
 
+.title,
+.description {
+  display: none;
+}
+
 @media only screen and (max-width: 960px) {
   .nav {
     position: fixed;
@@ -113,6 +119,12 @@
     flex-direction: column;
     justify-content: center;
     gap: 5px;
+  }
+
+  .navegation li {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
 
   .createCollection {
@@ -165,6 +177,23 @@
   }
 
   .buttonLogin {
-    display: none;
+    width: 100%;
+  }
+
+  .title,
+  .description {
+    display: inline;
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-background);
+  }
+
+  .description {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-placeholder);
   }
 }

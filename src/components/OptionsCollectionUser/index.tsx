@@ -4,6 +4,7 @@ import { DeleteCollection } from "@/components/DeleteCollection";
 import type { DeckDTO } from "@/services/types/DeckDTO";
 import { useEffect, useRef, useState } from "react";
 import { EllipsisVertical } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import clsx from "clsx";
 
 interface OptionsCollectionUserProps {
@@ -13,6 +14,8 @@ interface OptionsCollectionUserProps {
 export const OptionsCollectionUser = ({
   collection,
 }: OptionsCollectionUserProps) => {
+  const navigate = useNavigate();
+
   const [isVisibleRmCollection, setIsVisibleRmCollection] = useState(false);
   const [isVisibleDeleteDeck, setIsVisibleDeleteDeck] = useState(false);
 
@@ -86,6 +89,11 @@ export const OptionsCollectionUser = ({
             <>
               <button
                 type="button"
+                onClick={() =>
+                  navigate(`/update-collection/${collection.id}`, {
+                    state: collection,
+                  })
+                }
                 className={styles.dropdownButton}
               >
                 Editar

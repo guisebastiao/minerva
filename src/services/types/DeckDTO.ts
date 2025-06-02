@@ -1,3 +1,4 @@
+import type { flashcardDTO } from "./FlashcardDTO";
 import type { ReviewDTO } from "./ReviewDTO";
 import type { UserDTO } from "./UserDTO";
 
@@ -14,4 +15,5 @@ export interface DeckDTO {
   authUserAssessmentDeck: boolean;
   assessment: number;
   review: ReviewDTO;
+  flashcards: flashcardDTO[];
 }

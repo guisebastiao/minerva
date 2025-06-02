@@ -28,6 +28,7 @@
 
 .form {
   display: flex;
+  flex-direction: row;
   padding: 25px 0;
   gap: 8px;
 }
@@ -94,5 +95,5 @@
 .notSearchText {
   font-size: 18px;
   color: var(--text-active);
-  font-weight: 500;
+  font-weight: 400;
 }

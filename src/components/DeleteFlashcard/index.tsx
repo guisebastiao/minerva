@@ -1,22 +1,27 @@
 import styles from "@/components/RemoveCollection/style.module.css";
-import { deleteDeck } from "@/hooks/useDeck";
+import type { UseFieldArrayRemove } from "react-hook-form";
+import { deleteFlashcard } from "@/hooks/useFlashcard";
 import { useEffect, useRef } from "react";
 import { Button } from "../Button";
 import { X } from "lucide-react";
 import clsx from "clsx";
 
-interface DeleteCollectionProps {
+interface DeleteFlashcardProps {
   isVisible: boolean;
   setIsVisible: (value: boolean) => void;
-  deckId: string;
+  flashcardId: string;
+  remove: UseFieldArrayRemove;
+  index: number;
 }
 
-export const DeleteCollection = ({
+export const DeleteFlashcard = ({
   isVisible,
   setIsVisible,
-  deckId,
-}: DeleteCollectionProps) => {
-  const { mutate, isPending, isSuccess } = deleteDeck();
+  flashcardId,
+  remove,
+  index,
+}: DeleteFlashcardProps) => {
+  const { mutate, isPending, isSuccess } = deleteFlashcard();
 
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -24,12 +29,13 @@ export const DeleteCollection = ({
     setIsVisible(false);
   };
 
-  const handleDeleteDeck = (deckId: string) => {
-    mutate(deckId);
+  const handleDeleteFlashcard = (flashcardId: string) => {
+    mutate(flashcardId);
   };
 
   useEffect(() => {
     if (!isPending && isSuccess) {
+      remove(index);
       setIsVisible(false);
     }
   }, [isPending, isSuccess]);
@@ -40,9 +46,9 @@ export const DeleteCollection = ({
       className={clsx(styles.container, isVisible && styles.visible)}
     >
       <header className={styles.header}>
-        <h1 className={styles.title}>Excluir Coleção</h1>
+        <h1 className={styles.title}>Excluir Flashcard</h1>
         <p className={styles.description}>
-          Você tem certeza que deseja excluir essa coleção?
+          Você tem certeza que deseja excluir esse flashcard?
         </p>
         <button
           className={styles.close}
@@ -53,15 +59,17 @@ export const DeleteCollection = ({
       </header>
       <footer className={styles.footer}>
         <Button
+          type="button"
           value="Cancelar"
           variant="secondary"
           disabled={isPending}
           onClick={handleCloseModal}
         />
         <Button
-          value="Excluir Coleção"
+          type="button"
+          value="Excluir Flashcard"
           variant="destrutive"
-          onClick={() => handleDeleteDeck(deckId)}
+          onClick={() => handleDeleteFlashcard(flashcardId)}
           isPending={isPending}
         />
       </footer>

@@ -1,4 +1,64 @@
 .container {
   flex: 1;
   margin-top: var(--margin-header);
+  width: 100%;
+  max-width: 972px;
+  padding: 15px;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout_button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--error-background);
+  border: 1px solid var(--error-background);
+  border-radius: 6px;
+  padding: 0 12px;
+  height: 35px;
+  background-color: var(--card-foreground);
+  transition: 300ms ease;
+}
+.logout_button span {
+  font-size: 14px;
+}
+
+.logout_button:hover {
+  transform: scale(1.05);
+}
+
+.logout_button svg {
+  height: 18px;
+  width: 18px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+h1 {
+  font-size: 26px;
+  padding-block: 1em;
+}
+
+h2 {
+  font-size: 20px;
+  padding-block: 1em;
+}
+
+p {
+  color: #a1a1aa;
+  font-size: 16px;
+  margin-block-end: 1em;
+}
+
+.button {
+  width: 100%;
 }
