@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { createDeck } from "@/hooks/useDeck";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
+import { useEffect } from "react";
 import { X } from "lucide-react";
 
 export const CreateCollection = () => {
