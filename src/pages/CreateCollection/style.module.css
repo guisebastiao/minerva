@@ -157,6 +157,11 @@
   background: var(--card-foreground);
 }
 
+.removeFlashcard svg {
+  width: 20px;
+  height: 20px;
+}
+
 .errorMessage {
   width: 100%;
   font-size: 14px;

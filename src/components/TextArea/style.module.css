@@ -9,6 +9,7 @@
   font-weight: 400;
   font-size: 15px;
   color: var(--text-active);
+  overflow: hidden;
 }
 
 .textArea::placeholder {

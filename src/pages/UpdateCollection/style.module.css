@@ -152,6 +152,10 @@
   border-radius: 5px;
 }
 
+.removeFlashcard:hover {
+  background: var(--card-foreground);
+}
+
 .deleteFlashcard {
   position: absolute;
   top: 8px;
@@ -164,10 +168,6 @@
   border: 1px solid var(--error-background);
   background: var(--error-background-opacity-20);
   border-radius: 5px;
-}
-
-.removeFlashcard:hover {
-  background: var(--card-foreground);
 }
 
 .removeIcon {
