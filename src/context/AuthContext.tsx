@@ -1,5 +1,6 @@
 import type { AuthDTO } from "@/services/types/AuthDTO";
 import type { UserDTO } from "@/services/types/UserDTO";
+import { queryClient } from "@/context/QueryContext";
 import { toast } from "sonner";
 import {
   createContext,
@@ -67,6 +68,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.removeItem("auth");
     setUser(null);
     setAuthenticated(false);
+    queryClient.clear();
   };
 
   const renameUser = (name: string) => {
@@ -74,12 +76,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     const storage: AuthDTO = JSON.parse(storedAuth!);
     storage.user.name = name;
     localStorage.setItem("auth", JSON.stringify(storage));
-    setUser(storage.user)
-  } 
-
+    setUser(storage.user);
+  };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout, renameUser }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated, user, login, logout, renameUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -94,5 +97,3 @@ export const useContextAuth = (): AuthContextType => {
 
   return context;
 };
-
-
