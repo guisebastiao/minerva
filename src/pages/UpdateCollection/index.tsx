@@ -48,7 +48,7 @@ export const UpdateCollection = () => {
 
   return (
     <main className={styles.container}>
-      <h1 className={styles.title}>Criar Coleção</h1>
+      <h1 className={styles.title}>Editar Coleção</h1>
       <form
         className={styles.form}
         onSubmit={updateForm.handleSubmit(handleCreateCollection)}

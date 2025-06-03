@@ -129,8 +129,8 @@ export const Setting = () => {
       </form>
       <h2>Excluir Conta</h2>
       <p>
-        Ao clicar em “Excluir Minha Conta” você receberá um email para poder
-        confirmar a exclusão da sua conta.
+        Ao clicar em “Excluir Minha Conta” e confirmar a ação você excluirá
+        permanentemente a sua conta.
       </p>
       <Button
         variant="destrutive"
