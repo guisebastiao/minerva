@@ -7,10 +7,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   isSecure?: boolean;
   fieldError?: string;
+  className?: string;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, isSecure = false, fieldError, ...rest }, ref) => {
+  ({ label, isSecure = false, fieldError, className, ...rest }, ref) => {
     const [isVisible, setVisible] = useState(false);
     const [IsFocused, setIsFocused] = useState(false);
 
@@ -20,7 +21,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         htmlFor={label}
       >
         <span className={styles.label}>{label}</span>
-        <div className={clsx(styles.separator, IsFocused && styles.focused)}>
+        <div className={clsx(styles.separator, IsFocused && styles.focused, className)}>
           <input
             className={styles.input}
             type={isSecure ? (isVisible ? "text" : "password") : rest.type}
