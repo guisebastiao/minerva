@@ -1,12 +1,54 @@
 .container {
-  max-width: 1280px;
   width: 100%;
-  flex: 1;
-  margin-top: var(--margin-header);
+  height: 100vh;
   padding: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-image: url("/src/assets/background-login.png");
+  background-color: rgba(0, 0, 0, 0.1);
+  background-position: center;
+  background-blend-mode: multiply;
+  background-size: cover;
+  transition: 300ms ease;
   gap: 30px;
+}
+
+.loading {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.content {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: 300ms animation ease;
+}
+
+.buttonBack {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+}
+
+@keyframes animation {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

@@ -9,7 +9,6 @@
 .collectionContent {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: 10px;
 }
 
@@ -24,12 +23,13 @@
   color: var(--text-background);
   font-weight: 700;
   font-size: 28px;
+  padding: 15px 0;
 }
 
 .form {
   display: flex;
   flex-direction: row;
-  padding: 25px 0;
+  padding-bottom: 25px;
   gap: 8px;
 }
 

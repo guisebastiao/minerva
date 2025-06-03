@@ -7,6 +7,7 @@ const IGNORE_PATHS = [
   "/register",
   "/reset-password/:token",
   "/forgot-password",
+  "/shared/:deckId",
 ];
 
 export const AppLayout = () => {

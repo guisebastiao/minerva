@@ -1,8 +1,8 @@
 .container {
+  max-width: 1280px;
+  width: 100%;
   flex: 1;
   margin-top: var(--margin-header);
-  width: 100%;
-  max-width: 972px;
   padding: 15px;
 }
 
@@ -44,18 +44,22 @@ form {
 }
 
 h1 {
-  font-size: 26px;
-  padding-block: 1em;
+  color: var(--text-background);
+  font-weight: 700;
+  font-size: 28px;
+  padding: 15px 0;
 }
 
 h2 {
-  font-size: 20px;
-  padding-block: 1em;
+  font-size: 18px;
+  padding-block: 15px;
+  font-weight: 500;
+  color: var(--text-active);
 }
 
 p {
-  color: #a1a1aa;
-  font-size: 16px;
+  color: var(--text-placeholder);
+  font-size: 14px;
   margin-block-end: 1em;
 }
 
