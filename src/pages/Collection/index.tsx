@@ -76,7 +76,9 @@ export const Collection = () => {
       </form>
       <section className={styles.collectionContent}>
         {isLoading ? (
-          <Loading />
+          <div className={styles.loadingContent}>
+            <Loading />
+          </div>
         ) : response?.pages[0].data?.length! <= 0 ? (
           <div className={styles.contentNotSearch}>
             <IconNotSearch />
