@@ -1,11 +1,12 @@
+import styles from "@/components/TextArea/style.module.css";
+import clsx from "clsx";
 import {
   useEffect,
   useRef,
   forwardRef,
   type TextareaHTMLAttributes,
+  useImperativeHandle,
 } from "react";
-import styles from "@/components/TextArea/style.module.css";
-import clsx from "clsx";
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   className?: string;
@@ -14,6 +15,8 @@ interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   ({ className, ...rest }, ref) => {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+    useImperativeHandle(ref, () => textareaRef.current!, []);
 
     const handleInput = () => {
       const textarea = textareaRef.current;
