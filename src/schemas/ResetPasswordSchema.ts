@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const resetPasswordSchema = z
   .object({
-    password: z
+    newPassword: z
       .string()
       .nonempty("Informe sua senha")
       .min(6, "A senha deve ter mais de 6 caracteres")
@@ -31,7 +31,7 @@ export const resetPasswordSchema = z
         message: "A senha deve ter um caractere especial",
       }),
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine((data) => data.newPassword === data.confirmPassword, {
     message: "As senhas não coincidem",
     path: ["confirmPassword"],
   });

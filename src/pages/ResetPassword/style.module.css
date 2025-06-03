@@ -20,7 +20,7 @@
   width: 100%;
 }
 
-.buttons {
+.inputs {
   display: flex;
   flex-direction: column;
   gap: 15px;

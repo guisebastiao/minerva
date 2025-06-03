@@ -1,5 +1,6 @@
 import { CollectionCommunity } from "@/components/CollectionCommunity";
 import { findAllPublicCollections } from "@/hooks/useCommunity";
+import { IconNotSearch } from "@/components/IconNotSearch";
 import { FilterSearch } from "@/components/FilterSearch";
 import styles from "@/pages/Community/style.module.css";
 import { useSearchParams } from "react-router-dom";
@@ -80,15 +81,10 @@ export const Community = () => {
           <Loading />
         ) : response?.pages[0].data?.length! <= 0 ? (
           <div className={styles.contentNotSearch}>
-            <h1 className={styles.title}>OPSS...</h1>
+            <IconNotSearch />
             <p className={styles.notSearchText}>
               Nenhuma coleção foi encontrada
             </p>
-            <img
-              src="/not-search.png"
-              alt="not-search"
-              className={styles.notSearchImg}
-            />
           </div>
         ) : (
           response?.pages.map((page) =>
