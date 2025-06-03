@@ -21,7 +21,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         htmlFor={label}
       >
         <span className={styles.label}>{label}</span>
-        <div className={clsx(styles.separator, IsFocused && styles.focused, className)}>
+        <div
+          className={clsx(
+            styles.separator,
+            IsFocused && styles.focused,
+            className
+          )}
+        >
           <input
             className={styles.input}
             type={isSecure ? (isVisible ? "text" : "password") : rest.type}

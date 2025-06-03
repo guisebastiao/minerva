@@ -1,17 +1,28 @@
+import { updatePasswordSchema } from "@/schemas/UpdatePasswordSchema";
 import { updateNameSchema } from "@/schemas/UpdateNameSchema";
+import { updateName, updatePassword } from "@/hooks/useUser";
 import { useContextAuth } from "@/context/AuthContext";
 import styles from "@/pages/Setting/style.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { updateName } from "@/hooks/useUpdateName";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { useForm } from "react-hook-form";
 import { LogOut } from "lucide-react";
+import { useEffect, useState } from "react";
+import { DeleteAccount } from "@/components/DeleteAccount";
 
 export const Setting = () => {
   const { user, renameUser, logout } = useContextAuth();
 
-  const { isPending, mutate } = updateName();
+  const [isVisible, setIsVisible] = useState(false);
+
+  const { isPending: pendingUpdateName, mutate: mutateUpdateName } =
+    updateName();
+  const {
+    isPending: pendingUpdatePassword,
+    mutate: mutateUpdatePassword,
+    isSuccess,
+  } = updatePassword();
 
   const updateNameForm = useForm({
     resolver: zodResolver(updateNameSchema),
@@ -21,10 +32,31 @@ export const Setting = () => {
     },
   });
 
+  const updatePasswordForm = useForm({
+    resolver: zodResolver(updatePasswordSchema),
+    mode: "all",
+  });
+
   const handleRenameUser = () => {
-    renameUser(updateNameForm.getValues("name"));
-    mutate(updateNameForm.getValues());
+    const name = updateNameForm.getValues("name");
+
+    if (name === user?.name) {
+      return;
+    }
+
+    renameUser(name);
+    mutateUpdateName({ name });
   };
+
+  const handleUpdatePassword = () => {
+    mutateUpdatePassword(updatePasswordForm.getValues());
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      updatePasswordForm.reset();
+    }
+  }, [isSuccess]);
 
   return (
     <main className={styles.container}>
@@ -51,11 +83,11 @@ export const Setting = () => {
           type="submit"
           variant="primary"
           value="Salvar novo nome"
-          isPending={isPending}
+          isPending={pendingUpdateName}
         />
       </form>
       <h2>Segurança</h2>
-      <form action="">
+      <form onSubmit={updatePasswordForm.handleSubmit(handleUpdatePassword)}>
         <p>
           Você pode trocar sua senha, para isso, informe sua senha atual e
           depois a sua nova senha.
@@ -65,22 +97,33 @@ export const Setting = () => {
           defaultValue=""
           placeholder="Digite sua senha atual"
           isSecure={true}
+          fieldError={
+            updatePasswordForm.formState.errors.currentPassword?.message
+          }
+          {...updatePasswordForm.register("currentPassword")}
         />
         <Input
           label="Nova Senha"
           defaultValue=""
-          placeholder="Digite sua nova atual"
+          placeholder="Digite sua nova senha"
           isSecure={true}
+          fieldError={updatePasswordForm.formState.errors.newPassword?.message}
+          {...updatePasswordForm.register("newPassword")}
         />
         <Input
           label="Confirmar Senha"
           defaultValue=""
           placeholder="Confirme sua nova senha"
           isSecure={true}
+          fieldError={
+            updatePasswordForm.formState.errors.confirmPassword?.message
+          }
+          {...updatePasswordForm.register("confirmPassword")}
         />
         <Button
           type="submit"
           value="Trocar Senha"
+          isPending={pendingUpdatePassword}
           variant="primary"
         />
       </form>
@@ -93,6 +136,11 @@ export const Setting = () => {
         variant="destrutive"
         value="Excluir Minha Conta"
         className={styles.button}
+        onClick={() => setIsVisible(true)}
+      />
+      <DeleteAccount
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
       />
     </main>
   );

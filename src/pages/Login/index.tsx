@@ -48,7 +48,6 @@ export const Login = () => {
             className={styles.input}
             {...loginForm.register("email")}
           />
-
           <Input
             label="Senha"
             defaultValue=""
