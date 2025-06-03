@@ -21,7 +21,7 @@ export const Home = () => {
               </h2>
             </div>
             <img
-              src="/brain-home.png"
+              src="/src/assets/brain-home.png"
               alt="brain-illustrated"
               className={styles.brainIcon}
             />
@@ -106,7 +106,10 @@ export const Home = () => {
               ))}
             </div>
             <p className={styles.reviewText}>
-              É uma ótima ferramenta para os meus estudos, que me ajuda a fixar conteúdos com os quais sempre tive dificuldade. Além de poder criar meus próprios flashcards, também posso consumir materiais de outros usuários, o que potencializa ainda mais meus estudos.
+              É uma ótima ferramenta para os meus estudos, que me ajuda a fixar
+              conteúdos com os quais sempre tive dificuldade. Além de poder
+              criar meus próprios flashcards, também posso consumir materiais de
+              outros usuários, o que potencializa ainda mais meus estudos.
             </p>
             <div className={styles.userInfo}>
               <img

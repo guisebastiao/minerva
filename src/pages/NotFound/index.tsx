@@ -9,7 +9,7 @@ export const NotFound = () => {
     <main className={styles.container}>
       <h1 className={styles.title}>Página Não Encontrada!</h1>
       <img
-        src="/not-found.png"
+        src="/src/assets/not-found.png"
         alt="not-found-img"
         className={styles.img}
       />
