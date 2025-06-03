@@ -1,4 +1,5 @@
 import { CollectionUser } from "@/components/CollectionUser";
+import { IconNotSearch } from "@/components/IconNotSearch";
 import { findAllCollections } from "@/hooks/useCollection";
 import styles from "@/pages/Collection/style.module.css";
 import { useSearchParams } from "react-router-dom";
@@ -78,15 +79,10 @@ export const Collection = () => {
           <Loading />
         ) : response?.pages[0].data?.length! <= 0 ? (
           <div className={styles.contentNotSearch}>
-            <h1 className={styles.title}>OPSS...</h1>
+            <IconNotSearch />
             <p className={styles.notSearchText}>
               Nenhuma coleção foi encontrada
             </p>
-            <img
-              src="/not-search.png"
-              alt="not-search"
-              className={styles.notSearchImg}
-            />
           </div>
         ) : (
           response?.pages.map((page) =>
