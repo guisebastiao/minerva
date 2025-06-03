@@ -30,37 +30,39 @@ export const ResetPassword = () => {
 
   return (
     <main className={styles.container}>
-      <h1 className={styles.title}>Nova Senha</h1>
-      <form
-        className={styles.form}
-        onSubmit={resetPasswordForm.handleSubmit(handleForgotPassword)}
-      >
-        <div className={styles.inputs}>
-          <Input
-            label="Nova Senha"
-            isSecure={true}
-            placeholder="Informe sua nova senha"
-            fieldError={resetPasswordForm.formState.errors.newPassword?.message}
-            {...resetPasswordForm.register("newPassword")}
+      <section className={styles.content}>
+        <h1 className={styles.title}>Nova Senha</h1>
+        <form
+          className={styles.form}
+          onSubmit={resetPasswordForm.handleSubmit(handleForgotPassword)}
+        >
+          <div className={styles.inputs}>
+            <Input
+              label="Nova Senha"
+              isSecure={true}
+              placeholder="Informe sua nova senha"
+              fieldError={resetPasswordForm.formState.errors.newPassword?.message}
+              {...resetPasswordForm.register("newPassword")}
+              className={styles.input}
+            />
+            <Input
+              label="Confirmar Senha"
+              isSecure={true}
+              placeholder="Confirme sua nova senha"
+              fieldError={resetPasswordForm.formState.errors.confirmPassword?.message}
+              {...resetPasswordForm.register("confirmPassword")}
+              className={styles.input}
+            />
+          </div>
+          <Button
+            type="submit"
+            value="Salvar"
+            variant="primary"
+            className={styles.button}
+            isPending={isPending}
           />
-          <Input
-            label="Confirmar Senha"
-            isSecure={true}
-            placeholder="Confirme sua nova senha"
-            fieldError={
-              resetPasswordForm.formState.errors.confirmPassword?.message
-            }
-            {...resetPasswordForm.register("confirmPassword")}
-          />
-        </div>
-        <Button
-          type="submit"
-          value="Salvar"
-          variant="primary"
-          className={styles.button}
-          isPending={isPending}
-        />
-      </form>
+        </form>
+      </section>
     </main>
   );
 };

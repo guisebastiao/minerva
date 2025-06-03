@@ -22,35 +22,38 @@ export const ForgotPassword = () => {
 
   return (
     <main className={styles.container}>
-      <h1 className={styles.title}>Recuperar Senha</h1>
-      <form
-        className={styles.form}
-        onSubmit={forgotForm.handleSubmit(handleForgotPassword)}
-      >
-        <Input
-          label="Email"
-          placeholder="Informe seu email"
-          fieldError={forgotForm.formState.errors.email?.message}
-          {...forgotForm.register("email")}
-        />
-        <div className={styles.buttons}>
-          <Button
-            type="submit"
-            value="Enviar"
-            variant="primary"
-            className={styles.button}
-            isPending={isPending}
+      <section className={styles.content}>
+        <h1 className={styles.title}>Recuperar Senha</h1>
+        <form
+          className={styles.form}
+          onSubmit={forgotForm.handleSubmit(handleForgotPassword)}
+        >
+          <Input
+            label="Email"
+            placeholder="Informe seu email"
+            fieldError={forgotForm.formState.errors.email?.message}
+            {...forgotForm.register("email")}
+            className={styles.input}
           />
-          <Button
-            type="button"
-            value="Voltar"
-            variant="secondary"
-            className={styles.button}
-            disabled={isPending}
-            onClick={() => navigate("/login")}
-          />
-        </div>
-      </form>
+          <div className={styles.buttons}>
+            <Button
+              type="submit"
+              value="Enviar"
+              variant="primary"
+              className={styles.button}
+              isPending={isPending}
+            />
+            <Button
+              type="button"
+              value="Voltar"
+              variant="secondary"
+              className={styles.button}
+              disabled={isPending}
+              onClick={() => navigate("/login")}
+            />
+          </div>
+        </form>
+      </section>
     </main>
   );
 };
