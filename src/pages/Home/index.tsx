@@ -4,6 +4,7 @@ import gui_banner from "@/assets/gui.jpg";
 import karol_banner from "@/assets/karol.jpeg";
 import joao_banner from "@/assets/joao.jpg";
 import murilo_banner from "@/assets/murilo.jpg";
+import brain_home from "@/assets/brain-home.png";
 
 export const Home = () => {
   return (
@@ -21,7 +22,7 @@ export const Home = () => {
               </h2>
             </div>
             <img
-              src="/src/assets/brain-home.png"
+              src={brain_home}
               alt="brain-illustrated"
               className={styles.brainIcon}
             />
