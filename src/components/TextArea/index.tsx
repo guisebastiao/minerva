@@ -17,6 +17,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     const handleInput = () => {
       const textarea = textareaRef.current;
+
       if (textarea) {
         textarea.style.height = "auto";
         textarea.style.height = `${textarea.scrollHeight}px`;
@@ -34,7 +35,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
 
     return (
       <textarea
-        ref={ref}
+        ref={textareaRef}
         className={clsx(styles.textArea, className)}
         onInput={handleInput}
         rows={1}
