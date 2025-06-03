@@ -34,50 +34,55 @@ export const Login = () => {
 
   return (
     <main className={styles.container}>
-      <h1 className={styles.title}>Entrar</h1>
-      <form
-        className={styles.form}
-        onSubmit={loginForm.handleSubmit(handleLogin)}
-      >
-        <Input
-          label="Email"
-          defaultValue=""
-          placeholder="Informe seu email"
-          fieldError={loginForm.formState.errors.email?.message}
-          {...loginForm.register("email")}
-        />
-
-        <Input
-          label="Senha"
-          defaultValue=""
-          isSecure={true}
-          placeholder="Informe sua senha"
-          fieldError={loginForm.formState.errors.password?.message}
-          {...loginForm.register("password")}
-        />
-        <div className={styles.separator} />
-        <Button
-          type="submit"
-          variant="primary"
-          value={isPending ? "Entrando" : "Entrar"}
-          isPending={isPending}
-        />
-        <Button
-          type="button"
-          variant="secondary"
-          value="Ainda não tenho minha conta"
-          disabled={isPending}
-          onClick={() => navigate("/register")}
-        />
-        <div className={styles.separator} />
-        <button
-          type="button"
-          className={styles.forgotPassword}
-          disabled={isPending}
+      <section className={styles.content}>
+        <h1 className={styles.title}>Entrar</h1>
+        <form
+          className={styles.form}
+          onSubmit={loginForm.handleSubmit(handleLogin)}
         >
-          Esqueci minha senha
-        </button>
-      </form>
+          <Input
+            label="Email"
+            defaultValue=""
+            placeholder="Informe seu email"
+            fieldError={loginForm.formState.errors.email?.message}
+            className={styles.input}
+            {...loginForm.register("email")}
+          />
+
+          <Input
+            label="Senha"
+            defaultValue=""
+            isSecure={true}
+            placeholder="Informe sua senha"
+            fieldError={loginForm.formState.errors.password?.message}
+            className={styles.input}
+            {...loginForm.register("password")}
+          />
+          <div className={styles.separator} />
+          <Button
+            type="submit"
+            variant="primary"
+            value={isPending ? "Entrando" : "Entrar"}
+            isPending={isPending}
+          />
+          <Button
+            type="button"
+            variant="secondary"
+            value="Ainda não tenho minha conta"
+            disabled={isPending}
+            onClick={() => navigate("/register")}
+            className={styles.button_register}
+          />
+          <div className={styles.separator} />
+          <button
+            type="button"
+            className={styles.forgotPassword}
+            disabled={isPending}
+          >
+            Esqueci minha senha
+          </button>
+        </form>
+      </section>
     </main>
   );
 };
