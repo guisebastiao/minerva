@@ -92,7 +92,7 @@ const StudyCollection = () => {
       ) : (
         <>
           <div className={styles.header}>
-            <h1>{"SpringBoot Flashcards"}</h1>
+            <h1>{collection.title}</h1>
             <div className={styles.progress}>
               <span className={styles.text}>
                 {Math.round(
