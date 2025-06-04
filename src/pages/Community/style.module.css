@@ -12,7 +12,7 @@
   gap: 10px;
 }
 
-.collectionContent > *:not(.loadingContent) {
+.collectionContent > *:not(.loadingContent):not(.scrollRef) {
   flex: 1 1 250px;
   max-width: 410px;
 }
