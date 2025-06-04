@@ -7,10 +7,18 @@ export const Footer = () => {
       <div className={styles.boxPrimary}>
         <h4 className={styles.name}>Minerva</h4>
         <div className={styles.sociasMedias}>
-          <Instagram className={styles.iconLink} />
-          <Facebook className={styles.iconLink} />
-          <Mail className={styles.iconLink} />
-          <Linkedin className={styles.iconLink} />
+          <a href="https://www.instagram.com/minervaflashcards/" target="_blank" rel="noopener noreferrer">
+            <Instagram className={styles.iconLink} />
+            </a>
+          <a href="https://linktr.ee/minerva_flashcards" target="_blank" rel="noopener noreferrer">
+            <Facebook className={styles.iconLink} />
+            </a>
+          <a href="https://linktr.ee/minerva_flashcards" target="_blank" rel="noopener noreferrer">
+            <Mail className={styles.iconLink} />
+            </a>
+          <a href="https://linktr.ee/minerva_flashcards" target="_blank" rel="noopener noreferrer">
+            <Linkedin className={styles.iconLink} />
+          </a>
         </div>
       </div>
       <div className={styles.boxSecondary}>
