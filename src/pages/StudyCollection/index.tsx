@@ -16,6 +16,7 @@ const StudyCollection = () => {
 
   const [selectedRating, setSelectedRating] = useState<null | number>(null);
   const [currentFlashcard, setCurrentFlashcard] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [viewAnswer, setViewAnswer] = useState(false);
 
   const navigate = useNavigate();
@@ -43,29 +44,36 @@ const StudyCollection = () => {
   };
 
   const nextReview = () => {
-    const nextIndex = currentFlashcard + 1;
+    setIsAnimating(true);
+    setTimeout(() => {
+      const nextIndex = currentFlashcard + 1;
 
-    const totalOnPage = response?.data?.length ?? 0;
-    const currentPage = response?.paging?.currentPage ?? 0;
-    const totalPages = response?.paging?.totalPages ?? 1;
+      const totalOnPage = response?.data?.length ?? 0;
+      const currentPage = response?.paging?.currentPage ?? 0;
+      const totalPages = response?.paging?.totalPages ?? 1;
 
-    if (nextIndex < totalOnPage) {
-      setCurrentFlashcard(nextIndex);
-      setViewAnswer(false);
-    } else if (currentPage + 1 < totalPages) {
-      const nextPage = currentPage + 1;
+      if (nextIndex < totalOnPage) {
+        setCurrentFlashcard(nextIndex);
+        setViewAnswer(false);
+      } else if (currentPage + 1 < totalPages) {
+        const nextPage = currentPage + 1;
 
-      searchParams((params) => {
-        params.set("offset", String(nextPage));
-        return params;
-      });
+        searchParams((params) => {
+          params.set("offset", String(nextPage));
+          return params;
+        });
 
-      setCurrentFlashcard(0);
-      setViewAnswer(false);
-    } else {
-      toast.success("Você concluiu os estudos desta coleção!");
-      navigate("/collections");
-    }
+        setCurrentFlashcard(0);
+        setViewAnswer(false);
+      } else {
+        toast.success("Você concluiu os estudos desta coleção!");
+        navigate("/collections");
+      }
+
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 300);
+    }, 100);
   };
 
   useEffect(() => {
@@ -109,7 +117,12 @@ const StudyCollection = () => {
               </span>
             </div>
           </div>
-          <div className={styles.content}>
+          <div
+            className={clsx(
+              styles.content,
+              isAnimating && styles.slideAnimation
+            )}
+          >
             <div
               className={clsx(
                 styles.cardInner,
