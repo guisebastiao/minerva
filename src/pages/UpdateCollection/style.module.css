@@ -20,6 +20,12 @@
   margin-top: 15px;
 }
 
+.contentLoading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .form {
   display: flex;
   flex-direction: column;

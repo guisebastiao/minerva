@@ -89,11 +89,7 @@ export const OptionsCollectionUser = ({
             <>
               <button
                 type="button"
-                onClick={() =>
-                  navigate(`/update-collection/${collection.id}`, {
-                    state: collection,
-                  })
-                }
+                onClick={() => navigate(`/update-collection/${collection.id}`)}
                 className={styles.dropdownButton}
               >
                 Editar

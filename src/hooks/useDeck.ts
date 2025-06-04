@@ -27,7 +27,7 @@ export const createDeck = () => {
 export const findDeckById = ({ deckId }: { deckId: string }) => {
   return useQuery({
     queryFn: () => FindDeckById(deckId),
-    queryKey: ["FindDeck"],
+    queryKey: ["FindDeck", deckId],
     throwOnError(error: Error) {
       toast.error(error.message);
       return false;

@@ -7,7 +7,6 @@ export interface DeckDTO {
   title: string;
   description: string;
   isPublic: boolean;
-  publicId: string;
   createdAt: string;
   user: UserDTO;
   belongsToAuthUser: boolean;

@@ -26,11 +26,14 @@ const StudyCollection = () => {
   const { data: deck, isLoading: deckLoading } = findDeckById({
     deckId: deckId!,
   });
+  const collection = deck?.data!;
 
-  if (!isLoading && !deckLoading && deck?.data?.review.isUpToDate) {
-    toast.success("Você está em dia!");
-    navigate("/collections");
-  }
+  useEffect(() => {
+    if (!isLoading && !deckLoading && collection?.review?.isUpToDate) {
+      toast.success("Você está em dia!");
+      navigate("/collections");
+    }
+  }, [isLoading, deckLoading, collection]);
 
   const handleReview = (rating: number) => {
     setSelectedRating(rating);
@@ -77,7 +80,7 @@ const StudyCollection = () => {
   };
 
   useEffect(() => {
-    if (isSuccess && currentFlashcard <= (deck?.data?.review?.toStudy ?? 0)) {
+    if (isSuccess && currentFlashcard <= collection.review.toStudy) {
       nextReview();
     }
   }, [isSuccess]);
@@ -93,12 +96,12 @@ const StudyCollection = () => {
             <div className={styles.progress}>
               <span className={styles.text}>
                 {Math.round(
-                  (currentFlashcard / (deck?.data?.review?.toStudy ?? 1)) * 100
+                  (currentFlashcard / collection.review.toStudy) * 100
                 )}
                 %
               </span>
               <div className={styles.slider}>
-                {Array.from({ length: deck?.data?.review.toStudy ?? 0 }).map(
+                {Array.from({ length: collection.review.toStudy }).map(
                   (_, index) => (
                     <span
                       className={clsx(
@@ -113,7 +116,7 @@ const StudyCollection = () => {
               <span className={styles.text}>
                 {currentFlashcard}
                 {"/"}
-                {deck?.data?.review.toStudy ?? 0}
+                {collection.review.toStudy}
               </span>
             </div>
           </div>
@@ -138,7 +141,7 @@ const StudyCollection = () => {
                   Clique na carta para vira-la
                 </h3>
                 <h2 className={styles.contentQuestion}>
-                  {response?.data?.[currentFlashcard].question}
+                  {response?.data?.[currentFlashcard]?.question}
                 </h2>
               </div>
               <div
@@ -150,10 +153,10 @@ const StudyCollection = () => {
                   Clique na carta para vira-la
                 </h3>
                 <h5 className={styles.viewQuestion}>
-                  {response?.data?.[currentFlashcard].question}
+                  {response?.data?.[currentFlashcard]?.question}
                 </h5>
                 <h2 className={styles.contentAnswer}>
-                  {response?.data?.[currentFlashcard].answer}
+                  {response?.data?.[currentFlashcard]?.answer}
                 </h2>
               </div>
             </div>
