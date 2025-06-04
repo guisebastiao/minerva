@@ -1,15 +1,16 @@
-import type { CollectionDTO } from "@/services/types/CollectionDTO";
 import { Album, GraduationCap, Heart, Share2, Check } from "lucide-react";
+import type { CollectionDTO } from "@/services/types/CollectionDTO";
 import styles from "@/components/CollectionUser/style.module.css";
 import { OptionsCollectionUser } from "../OptionsCollectionUser";
 import type { FavoriteSchema } from "@/schemas/FavoriteSchema";
 import { CreateAssessment } from "../CreateAssessment";
 import { DeleteAssessment } from "../DeleteAssessment";
 import { addFavorite } from "@/hooks/useCollection";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { ptBR } from "date-fns/locale";
 import { Button } from "../Button";
 import { format } from "date-fns";
-import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import clsx from "clsx";
 
@@ -20,6 +21,8 @@ interface CollectionUserProps {
 export const CollectionUser = ({ collection }: CollectionUserProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const TIME_CLICKED = 2000;
+
+  const navigate = useNavigate();
 
   const { mutate } = addFavorite();
 
@@ -129,6 +132,7 @@ export const CollectionUser = ({ collection }: CollectionUserProps) => {
         value="Estudar Agora"
         variant="primary"
         disabled={collection.deck.review.isUpToDate}
+        onClick={() => navigate(`/study-collection/${collection.deck.id}`)}
       />
       {collection.deck.authUserAssessmentDeck ? (
         <>

@@ -1,16 +1,17 @@
 import type { AddNewCollectionSchema } from "@/schemas/AddNewCollectionSchema";
-import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import type { CollectionDTO } from "@/services/types/CollectionDTO";
 import type { FavoriteSchema } from "@/schemas/FavoriteSchema";
 import type { DefaultDTO } from "@/services/types/DefaultDTO";
+import { useParams, useSearchParams } from "react-router-dom";
 import { queryClient } from "@/context/QueryContext";
-import { useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 import {
   AddFavorite,
   FindAllCollections,
   AddNewCollection,
   RemoveCollection,
+  FindAllCollectionsToStudy,
 } from "@/services/collectionService";
 
 export const addNewCollection = () => {
@@ -53,6 +54,28 @@ export const findAllCollections = () => {
     },
     queryKey: ["collections", search],
     initialPageParam: 0,
+  });
+};
+
+export const findAllCollectionsToStudy = () => {
+  const [searchParams] = useSearchParams();
+  const { deckId } = useParams();
+
+  const offset = searchParams.get("offset") || 0;
+
+  return useQuery({
+    queryFn: () => {
+      return FindAllCollectionsToStudy({
+        deckId: deckId!,
+        offset: Number(offset),
+        limit: 20,
+      });
+    },
+    throwOnError: (error: Error) => {
+      toast.error(error.message);
+      return false;
+    },
+    queryKey: ["findToStudy", deckId],
   });
 };
 

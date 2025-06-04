@@ -1,0 +1,222 @@
+.container {
+  max-width: 980px;
+  width: 100%;
+  height: calc(100vh - var(--margin-header) - 90px);
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--margin-header);
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 15px 0 15px;
+  gap: 20px;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-background);
+}
+
+.progress {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-placeholder);
+}
+
+.slider {
+  flex: 1;
+  display: flex;
+  gap: 3px;
+}
+
+.tab {
+  display: block;
+  width: 100%;
+  height: 4px;
+  border-radius: 5px;
+  background: var(--card-hover);
+}
+
+.tab.active {
+  background: var(--primary-background);
+}
+
+.content {
+  perspective: 1000px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardInner {
+  position: relative;
+  width: 100%;
+  max-width: 568px;
+  height: 100%;
+  max-height: 480px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.viewAnswer {
+  transform: rotateY(180deg);
+}
+
+.card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 1px solid var(--border-background);
+  background: var(--card-foreground);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: 200ms ease;
+  cursor: pointer;
+  padding: 15px;
+  gap: 10px;
+}
+
+.frontface {
+  transform: rotateY(0deg);
+}
+
+.backface {
+  transform: rotateY(180deg);
+}
+
+.contentQuestion {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--primary-background);
+  text-align: center;
+}
+
+.contentAnswer {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-active);
+  text-align: center;
+}
+
+.viewQuestion {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-placeholder);
+}
+
+.buttonRating {
+  width: 135px;
+  padding: 12px 16px;
+  background: var(--primary-background);
+  transition: 300ms ease;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.buttonRating:hover {
+  background: var(--primary-hover);
+}
+
+.buttonRating svg {
+  width: 20px;
+  height: 20px;
+}
+
+.buttonRating span {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-background);
+}
+
+.rating {
+  max-width: 568px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.folded {
+  position: absolute;
+  top: 0;
+  width: 42px;
+  height: 42px;
+}
+
+.foldedFrontface {
+  right: 0;
+  box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.25);
+  border-bottom-left-radius: 8px;
+  background: linear-gradient(
+    225deg,
+    var(--primary-background) 50%,
+    var(--card-hover) 50%
+  );
+}
+
+.foldedBackface {
+  left: 0;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
+  border-bottom-right-radius: 8px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-background) 50%,
+    var(--card-hover) 50%
+  );
+}
+
+.cardTitle {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-active);
+}
+
+@media screen and (max-width: 595px) {
+  .buttonRating {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .buttonRating span {
+    position: absolute;
+    width: 135px;
+    top: calc(100% + 5px);
+    color: var(--text-placeholder);
+    font-size: 10px;
+    font-weight: 400;
+  }
+
+  .rating {
+    padding-bottom: 15px;
+  }
+}

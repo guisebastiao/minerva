@@ -14,6 +14,7 @@ import { Collection } from "@/pages/Collection";
 import { Setting } from "@/pages/Setting";
 import { CreateCollection } from "@/pages/CreateCollection";
 import { UpdateCollection } from "@/pages/UpdateCollection";
+import StudyCollection from "@/pages/StudyCollection";
 import { Shared } from "@/pages/Shared";
 
 export const router = createBrowserRouter([
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
           {
             path: "/shared/:deckId",
             element: <Shared />,
+          },
+          {
+            path: "/study-collection/:deckId",
+            element: <StudyCollection />,
           },
         ],
       },

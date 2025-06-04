@@ -1,12 +1,19 @@
 import type { AddNewCollectionSchema } from "@/schemas/AddNewCollectionSchema";
 import type { FavoriteSchema } from "@/schemas/FavoriteSchema";
 import type { CollectionDTO } from "./types/CollectionDTO";
+import type { FlashcardDTO } from "./types/FlashcardDTO";
 import type { DefaultDTO } from "./types/DefaultDTO";
 import { AxiosError } from "axios";
 import { axios } from "@/services";
 
 interface FindAllCollectionsProps {
   search: string | null;
+  offset: number;
+  limit: number;
+}
+
+interface FindAllCollectionsToStudyProps {
+  deckId: string;
   offset: number;
   limit: number;
 }
@@ -46,6 +53,37 @@ export const FindAllCollections = async ({
       {
         params: {
           search,
+          offset,
+          limit,
+        },
+      }
+    );
+    return response;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      if (!error.response) {
+        throw new Error("Algo deu errado, tente novamente mais tarde");
+      }
+
+      const { message } = error.response.data as DefaultDTO;
+
+      throw new Error(message);
+    }
+
+    throw new Error("Algo deu errado, tente novamente mais tarde");
+  }
+};
+
+export const FindAllCollectionsToStudy = async ({
+  offset,
+  limit,
+  deckId,
+}: FindAllCollectionsToStudyProps): Promise<DefaultDTO<FlashcardDTO[]>> => {
+  try {
+    const { data: response } = await axios.get<DefaultDTO<FlashcardDTO[]>>(
+      `/collections/to-study/${deckId}`,
+      {
+        params: {
           offset,
           limit,
         },

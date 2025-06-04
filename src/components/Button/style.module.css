@@ -53,8 +53,8 @@
 .button:disabled,
 .secondary:disabled,
 .destrutive:disabled {
-  background: var(--theme-background);
-  color: var(--card-hover);
-  border: 1px solid var(--card-hover);
+  background: var(--button-foreground);
+  color: var(--card-placeholder);
+  border: none;
   cursor: not-allowed;
 }

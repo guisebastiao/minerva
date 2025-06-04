@@ -1,8 +1,8 @@
 import type { ForgotPasswordSchemaType } from "@/schemas/ForgotPasswordSchema";
+import type { ResetPasswordSchemaType } from "@/schemas/ResetPasswordSchema";
 import type { DefaultDTO } from "./types/DefaultDTO";
 import { AxiosError } from "axios";
 import { axios } from "@/services";
-import type { ResetPasswordSchemaType } from "@/schemas/ResetPasswordSchema";
 
 export const CreateResetPassword = async (
   data: ForgotPasswordSchemaType
