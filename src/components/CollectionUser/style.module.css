@@ -1,6 +1,6 @@
 .content {
-  max-width: 410px;
-  min-width: 250px;
+  max-width: 800px;
+  min-width: 300px;
   width: 100%;
   display: flex;
   flex-direction: column;
