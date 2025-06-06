@@ -21,12 +21,16 @@ const StudyCollection = () => {
 
   const navigate = useNavigate();
 
-  const { data: response, isLoading } = findAllCollectionsToStudy();
   const { mutate, isPending, isSuccess } = reviewFlashcard();
+  const {
+    data: response,
+    isLoading,
+    refetch: refetchStudy,
+  } = findAllCollectionsToStudy();
   const {
     data: deck,
     isLoading: deckLoading,
-    refetch,
+    refetch: refetchDeck,
   } = findDeckById({
     deckId: deckId!,
   });
@@ -34,7 +38,8 @@ const StudyCollection = () => {
   const collection = deck?.data!;
 
   useEffect(() => {
-    refetch();
+    refetchStudy();
+    refetchDeck();
   }, []);
 
   useEffect(() => {
