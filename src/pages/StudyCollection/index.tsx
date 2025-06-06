@@ -23,10 +23,19 @@ const StudyCollection = () => {
 
   const { data: response, isLoading } = findAllCollectionsToStudy();
   const { mutate, isPending, isSuccess } = reviewFlashcard();
-  const { data: deck, isLoading: deckLoading } = findDeckById({
+  const {
+    data: deck,
+    isLoading: deckLoading,
+    refetch,
+  } = findDeckById({
     deckId: deckId!,
   });
+
   const collection = deck?.data!;
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   useEffect(() => {
     if (!isLoading && !deckLoading && collection?.review?.isUpToDate) {

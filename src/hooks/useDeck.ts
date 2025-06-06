@@ -47,6 +47,7 @@ export const updateDeck = () => {
       queryClient.invalidateQueries({ queryKey: ["community"] });
       queryClient.invalidateQueries({ queryKey: ["collections"] });
       queryClient.invalidateQueries({ queryKey: ["findToStudy"] });
+      queryClient.invalidateQueries({ queryKey: ["FindDeck"] });
       toast.success(data.message);
     },
   });
