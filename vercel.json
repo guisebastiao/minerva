@@ -1,10 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "http://54.233.166.78/:path*"
-    },
-
     { "source": "/login", "destination": "/" },
     { "source": "/register", "destination": "/" },
     { "source": "/forgot-password", "destination": "/" },
