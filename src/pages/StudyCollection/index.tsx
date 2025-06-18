@@ -151,9 +151,10 @@ const StudyCollection = () => {
                 onClick={() => setViewAnswer(true)}
               >
                 <div className={clsx(styles.folded, styles.foldedFrontface)} />
-                <h3 className={styles.cardTitle}>
+                <h3 className={styles.cardTitleQuestion}>Questão</h3>
+                <h5 className={styles.cardTitle}>
                   Clique na carta para vira-la
-                </h3>
+                </h5>
                 <h2 className={styles.contentQuestion}>
                   {response?.data?.[currentFlashcard]?.question}
                 </h2>
@@ -163,11 +164,9 @@ const StudyCollection = () => {
                 onClick={() => setViewAnswer(false)}
               >
                 <div className={clsx(styles.folded, styles.foldedBackface)} />
-                <h3 className={styles.cardTitle}>
+                <h3 className={styles.cardTitleQuestion}>Resposta</h3>
+                <h5 className={styles.cardTitle}>
                   Clique na carta para vira-la
-                </h3>
-                <h5 className={styles.viewQuestion}>
-                  {response?.data?.[currentFlashcard]?.question}
                 </h5>
                 <h2 className={styles.contentAnswer}>
                   {response?.data?.[currentFlashcard]?.answer}

@@ -8,5 +8,5 @@ export const PublicRoutes = () => {
     return null;
   }
 
-  return !isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+  return !isAuthenticated ? <Outlet /> : <Navigate to="/collections" />;
 };

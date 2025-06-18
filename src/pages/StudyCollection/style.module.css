@@ -87,7 +87,7 @@
   border: 1px solid var(--border-background);
   background: var(--card-foreground);
   border-radius: 10px;
-  overflow: hidden;
+  overflow-y: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,14 +107,18 @@
 }
 
 .contentQuestion {
-  font-size: 24px;
+  display: inline-block;
+  width: 100%;
+  font-size: clamp(12px, 5vw, 24px);
   font-weight: 600;
   color: var(--primary-background);
   text-align: center;
 }
 
 .contentAnswer {
-  font-size: 22px;
+  display: inline-block;
+  width: 100%;
+  font-size: clamp(10px, 4vw, 22px);
   font-weight: 600;
   color: var(--text-active);
   text-align: center;
@@ -189,14 +193,24 @@
   );
 }
 
-.cardTitle {
+.cardTitleQuestion {
   position: absolute;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary-background);
+}
+
+.cardTitle {
+  position: absolute;
+  top: 32px;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 12px;
   font-weight: 500;
-  color: var(--text-active);
+  color: var(--text-placeholder);
 }
 
 @media screen and (max-width: 595px) {

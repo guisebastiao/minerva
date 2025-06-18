@@ -106,10 +106,10 @@ export const CreateCollection = () => {
                   maxLength={300}
                   {...createForm.register(`flashcards.${index}.answer`)}
                 />
-                {createForm.formState.errors.flashcards?.[index]?.question && (
+                {createForm.formState.errors.flashcards?.[index]?.answer && (
                   <p className={styles.errorMessage}>
                     {
-                      createForm.formState.errors.flashcards[index]?.question
+                      createForm.formState.errors.flashcards[index]?.answer
                         ?.message
                     }
                   </p>

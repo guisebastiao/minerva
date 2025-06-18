@@ -22,7 +22,7 @@ export const deckSchema = z.object({
           .max(300, "A pergunta deve ter menos de 300 caracteres"),
         answer: z
           .string()
-          .min(1, "Resposta obrigatória")
+          .min(1, "Informe a resposta")
           .max(300, "A resposta deve ter menos de 300 caracteres"),
       })
     )
