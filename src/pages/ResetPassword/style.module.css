@@ -13,11 +13,12 @@
 .content {
   max-width: 672px;
   width: 100%;
+  height: min-content;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 15px;
+  padding: 40px 15px;
   gap: 40px;
   background: rgba(0, 0, 0, 0.1);
   border-radius: 16px;
